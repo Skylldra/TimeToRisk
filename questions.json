@@ -3,7 +3,7 @@
     {
       "name": "Geografie",
       "questions": [
-        { "points": 100, "question": "Was ist die Hauptstadt von Frankreich?", "answer": "Paris" },
+        { "points": 100, "question": "Was ist die Hauptstadt von Frankreich?", "answer": "Paris", "image": "image.jpg" },
         { "points": 200, "question": "Auf welchem Kontinent liegt Ägypten?", "answer": "Afrika" },
         { "points": 300, "question": "Welcher Fluss ist der längste der Welt?", "answer": "Nil" },
         { "points": 400, "question": "Wie viele Länder hat der afrikanische Kontinent?", "answer": "54" },
