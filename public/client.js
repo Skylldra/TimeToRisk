@@ -1,7 +1,8 @@
 const socket = io();
 
-let myState = null;
-let amHost  = false;
+let myState    = null;
+let amHost     = false;
+let hasJoined  = false;
 
 // ── Floating background emojis ───────────────────────────────────────────────
 const QUIZ_EMOJIS = ['🧠','💡','❓','🎯','🏆','⭐','🔍','📚','🎲','🤔','✨','🌟','💫','🎪','🏅'];
@@ -41,7 +42,8 @@ function joinGame() {
   const name = nameInput.value.trim();
   if (!name) { nameInput.focus(); return; }
 
-  amHost = document.getElementById('is-host').checked;
+  amHost    = document.getElementById('is-host').checked;
+  hasJoined = true;
   socket.emit('join', { name, isHost: amHost });
 
   document.getElementById('join-screen').style.display  = 'none';
