@@ -17,6 +17,7 @@ function createInitialState() {
   return {
     players: [],
     currentTurnIndex: 0,
+    questionOwnerTurnIndex: 0,
     answeredQuestions: [],
     // 'board' | 'question' | 'buzzering' | 'correct'
     phase: 'board',
@@ -147,6 +148,7 @@ io.on('connection', (socket) => {
 
     state.activeQuestion = { categoryIndex, questionIndex };
     state.phase = 'question';
+    state.questionOwnerTurnIndex = state.currentTurnIndex;
     state.currentAnswererId = getCurrentPlayer()?.id || null;
     state.buzzedById = null;
     state.wrongAnswererIds = [];
@@ -166,10 +168,11 @@ io.on('connection', (socket) => {
     const answerer = state.players.find(p => p.id === answererId);
     if (answerer) answerer.score += points;
 
-    // The correct answerer gets the next turn
+    // Advance to the player after whoever owned this question's turn
     const nonHost = getNonHostPlayers();
-    const answererIndex = nonHost.findIndex(p => p.id === answererId);
-    if (answererIndex !== -1) state.currentTurnIndex = answererIndex;
+    if (nonHost.length > 0) {
+      state.currentTurnIndex = (state.questionOwnerTurnIndex + 1) % nonHost.length;
+    }
 
     // Mark question answered immediately so board updates
     state.answeredQuestions.push({ categoryIndex, questionIndex });
@@ -227,11 +230,12 @@ io.on('connection', (socket) => {
     const player = state.players.find(p => p.id === socket.id);
     if (!player?.isHost) return;
     if (!state.activeQuestion) return;
+    if (state.phase === 'correct') return; // turn already advanced by answerCorrect
 
-    // Advance to next player in rotation
+    // Advance to the player after whoever owned this question's turn
     const nonHost = getNonHostPlayers();
     if (nonHost.length > 0) {
-      state.currentTurnIndex = (state.currentTurnIndex + 1) % nonHost.length;
+      state.currentTurnIndex = (state.questionOwnerTurnIndex + 1) % nonHost.length;
     }
 
     state.answeredQuestions.push({ ...state.activeQuestion });
