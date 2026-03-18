@@ -49,7 +49,7 @@ function joinGame() {
   document.getElementById('join-screen').style.display  = 'none';
   document.getElementById('game-screen').style.display  = 'flex';
 
-  if (amHost) document.getElementById('reset-btn').style.display = 'block';
+  if (amHost) document.getElementById('host-buttons').style.display = 'flex';
 }
 
 // ── State updates ────────────────────────────────────────────────────────────
@@ -58,9 +58,9 @@ socket.on('gameState', (state) => {
   const me = state.players.find(p => p.id === state.myId);
   if (me) {
     amHost = me.isHost;
-    // Keep reset-btn in sync after reconnect
-    document.getElementById('reset-btn').style.display =
-      (hasJoined && amHost) ? 'block' : 'none';
+    // Keep host-buttons in sync after reconnect
+    document.getElementById('host-buttons').style.display =
+      (hasJoined && amHost) ? 'flex' : 'none';
   }
   // Always refresh the join-screen player list (visible before joining)
   renderJoinPlayerList(state);
@@ -239,6 +239,81 @@ function renderModal(state) {
   buzzerBtn.style.display = canBuzz ? 'block' : 'none';
 }
 
+// ── Full reset (everyone back to join screen) ────────────────────────────────
+socket.on('fullReset', () => {
+  hasJoined = false;
+  amHost    = false;
+  myState   = null;
+  pmPlayerId = null;
+
+  document.getElementById('game-screen').style.display    = 'none';
+  document.getElementById('question-modal').style.display = 'none';
+  document.getElementById('points-modal').style.display   = 'none';
+  document.getElementById('host-buttons').style.display   = 'none';
+  document.getElementById('join-screen').style.display    = 'flex';
+  document.getElementById('player-name').value            = '';
+  document.getElementById('is-host').checked              = false;
+  document.getElementById('join-players').innerHTML       = '';
+});
+
+// ── Points modal ─────────────────────────────────────────────────────────────
+let pmPlayerId = null;
+let pmMode     = 'add';
+
+function openPointsModal() {
+  if (!amHost || !myState) return;
+  pmPlayerId = null;
+  pmMode     = 'add';
+
+  // Render player list
+  const players = myState.players.filter(p => !p.isHost);
+  document.getElementById('pm-player-list').innerHTML = players.map(p => `
+    <button class="pm-player-btn" data-id="${esc(p.id)}" data-name="${esc(p.name)}" onclick="pmSelectPlayer(this)">
+      <span>${esc(p.name)}</span>
+      <span class="pm-score-tag">${p.score} Punkte</span>
+    </button>`).join('');
+
+  document.getElementById('pm-step-1').style.display = 'block';
+  document.getElementById('pm-step-2').style.display = 'none';
+  document.getElementById('points-modal').style.display = 'flex';
+}
+
+function closePointsModal() {
+  document.getElementById('points-modal').style.display = 'none';
+}
+
+function pmSelectPlayer(btn) {
+  pmPlayerId = btn.dataset.id;
+  document.getElementById('pm-chosen-player').textContent = btn.dataset.name;
+  document.getElementById('pm-step-1').style.display = 'none';
+  document.getElementById('pm-step-2').style.display = 'block';
+  document.getElementById('pm-input').value = '';
+  setPmMode('add');
+  setTimeout(() => document.getElementById('pm-input').focus(), 50);
+}
+
+function setPmMode(mode) {
+  pmMode = mode;
+  document.getElementById('pm-btn-add').className =
+    'pm-mode-btn' + (mode === 'add' ? ' active-add' : '');
+  document.getElementById('pm-btn-sub').className =
+    'pm-mode-btn' + (mode === 'sub' ? ' active-sub' : '');
+}
+
+function pmBack() {
+  document.getElementById('pm-step-2').style.display = 'none';
+  document.getElementById('pm-step-1').style.display = 'block';
+  pmPlayerId = null;
+}
+
+function pmSave() {
+  const raw = parseInt(document.getElementById('pm-input').value, 10);
+  if (!pmPlayerId || isNaN(raw) || raw < 0) return;
+  const amount = pmMode === 'sub' ? -raw : raw;
+  socket.emit('adjustPoints', { playerId: pmPlayerId, amount });
+  closePointsModal();
+}
+
 // ── Actions ──────────────────────────────────────────────────────────────────
 function selectQuestion(ci, qi) { socket.emit('selectQuestion', { categoryIndex: ci, questionIndex: qi }); }
 function answerCorrect()        { socket.emit('answerCorrect'); }
@@ -256,7 +331,7 @@ function tryBuzz() {
 function buzz() { tryBuzz(); }
 
 function resetGame() {
-  if (confirm('Spiel wirklich zurücksetzen? Alle Punkte werden gelöscht.')) {
+  if (confirm('Spiel komplett zurücksetzen? Alle Spieler werden entfernt und zum Startbildschirm weitergeleitet.')) {
     socket.emit('resetGame');
   }
 }

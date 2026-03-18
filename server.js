@@ -243,14 +243,21 @@ io.on('connection', (socket) => {
     broadcastState();
   });
 
+  socket.on('adjustPoints', ({ playerId, amount }) => {
+    const player = state.players.find(p => p.id === socket.id);
+    if (!player?.isHost) return;
+    const target = state.players.find(p => p.id === playerId && !p.isHost);
+    if (!target) return;
+    target.score += amount;
+    broadcastState();
+  });
+
   socket.on('resetGame', () => {
     const player = state.players.find(p => p.id === socket.id);
     if (!player?.isHost) return;
-
-    const players = state.players.map(p => ({ ...p, score: 0 }));
+    // Full reset: kick everyone out and wipe all state
+    io.emit('fullReset');
     state = createInitialState();
-    state.players = players;
-    broadcastState();
   });
 
   socket.on('disconnect', () => {

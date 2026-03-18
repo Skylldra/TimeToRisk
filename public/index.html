@@ -9,7 +9,6 @@
 </head>
 <body>
 
-  <!-- Floating background emojis (injected via JS) -->
   <div id="bg-emojis" aria-hidden="true"></div>
 
   <!-- ═══════════════════ JOIN SCREEN ═══════════════════ -->
@@ -18,14 +17,8 @@
       <div class="join-logo">TimeToRisk</div>
       <p class="join-sub">Das ultimative Quiz-Erlebnis</p>
 
-      <input
-        type="text"
-        id="player-name"
-        placeholder="Dein Name"
-        maxlength="24"
-        autocomplete="off"
-        spellcheck="false"
-      >
+      <input type="text" id="player-name" placeholder="Dein Name"
+             maxlength="24" autocomplete="off" spellcheck="false">
 
       <label class="host-label">
         <span class="toggle-wrap">
@@ -55,29 +48,28 @@
 
     <div id="board"></div>
 
-    <button id="reset-btn" onclick="resetGame()">↺ Spiel zurücksetzen</button>
+    <!-- Host-only fixed buttons -->
+    <div id="host-buttons">
+      <button onclick="openPointsModal()">◈ Punkte verteilen</button>
+      <button onclick="resetGame()">↺ Spiel zurücksetzen</button>
+    </div>
 
   </div>
 
   <!-- ═══════════════════ QUESTION MODAL ═══════════════════ -->
   <div id="question-modal">
     <div class="modal-card">
-
       <div class="modal-meta">
         <span id="modal-category"></span>
         <span class="modal-sep">·</span>
         <span id="modal-points"></span>
       </div>
-
       <div id="modal-question"></div>
-
       <div id="modal-answer"></div>
-
       <div id="modal-info">
         <div id="modal-answerer"></div>
         <div id="modal-status"></div>
       </div>
-
       <div id="host-controls">
         <button id="btn-correct" class="btn-correct" onclick="answerCorrect()">
           <span class="btn-icon">✓</span> Korrekt
@@ -89,8 +81,37 @@
           <span class="btn-icon">✕</span> Schließen
         </button>
       </div>
-
       <button id="buzzer-btn" onclick="buzz()">BUZZ!</button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════ POINTS MODAL (host only) ═══════════════════ -->
+  <div id="points-modal">
+    <div class="modal-card pm-card">
+
+      <button class="pm-close-btn" onclick="closePointsModal()">✕</button>
+
+      <!-- Step 1: pick player -->
+      <div id="pm-step-1">
+        <div class="pm-heading">Punkte verteilen</div>
+        <div class="pm-hint">Spieler auswählen</div>
+        <div id="pm-player-list"></div>
+      </div>
+
+      <!-- Step 2: enter amount -->
+      <div id="pm-step-2">
+        <div class="pm-heading">Punkte verteilen</div>
+        <div id="pm-chosen-player"></div>
+        <div class="pm-mode-row">
+          <button id="pm-btn-add" class="pm-mode-btn" onclick="setPmMode('add')">+ Hinzufügen</button>
+          <button id="pm-btn-sub" class="pm-mode-btn" onclick="setPmMode('sub')">− Abziehen</button>
+        </div>
+        <input type="number" id="pm-input" min="0" placeholder="Punkte eingeben…" autocomplete="off">
+        <div class="pm-actions">
+          <button class="btn-close" onclick="pmBack()">← Zurück</button>
+          <button class="btn-correct" onclick="pmSave()">✓ Speichern</button>
+        </div>
+      </div>
 
     </div>
   </div>
