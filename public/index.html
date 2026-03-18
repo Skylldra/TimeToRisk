@@ -3,53 +3,67 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jeopardy</title>
+  <title>TimeToRisk</title>
   <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <!-- =================== JOIN SCREEN =================== -->
+  <!-- Floating background emojis (injected via JS) -->
+  <div id="bg-emojis" aria-hidden="true"></div>
+
+  <!-- ═══════════════════ JOIN SCREEN ═══════════════════ -->
   <div id="join-screen">
-    <div class="join-box">
-      <div class="join-logo">JEOPARDY</div>
+    <div class="join-card">
+      <div class="join-logo">TimeToRisk</div>
+      <p class="join-sub">Das ultimative Quiz-Erlebnis</p>
+
       <input
         type="text"
         id="player-name"
         placeholder="Dein Name"
         maxlength="24"
         autocomplete="off"
+        spellcheck="false"
       >
+
       <label class="host-label">
-        <input type="checkbox" id="is-host">
-        <span>Ich bin der Host (Spielleiter)</span>
+        <span class="toggle-wrap">
+          <input type="checkbox" id="is-host">
+          <span class="toggle-track"></span>
+        </span>
+        <span>Ich bin der Host</span>
       </label>
-      <button class="join-btn" onclick="joinGame()">Spiel beitreten</button>
+
+      <button class="join-btn" onclick="joinGame()">
+        Beitreten <span class="join-arrow">→</span>
+      </button>
     </div>
   </div>
 
-  <!-- =================== GAME SCREEN =================== -->
+  <!-- ═══════════════════ GAME SCREEN ═══════════════════ -->
   <div id="game-screen">
 
-    <div id="header">
-      <div id="turn-indicator">Warte auf Spieler...</div>
-    </div>
+    <header id="header">
+      <div class="game-wordmark">TimeToRisk</div>
+      <div id="turn-indicator">Warte auf Spieler…</div>
+    </header>
 
     <div id="score-bar"></div>
 
     <div id="board"></div>
 
-    <!-- Host-only: reset button bottom-right -->
-    <button id="reset-btn" onclick="resetGame()">Spiel zurücksetzen</button>
+    <button id="reset-btn" onclick="resetGame()">↺ Spiel zurücksetzen</button>
 
   </div>
 
-  <!-- =================== QUESTION MODAL =================== -->
+  <!-- ═══════════════════ QUESTION MODAL ═══════════════════ -->
   <div id="question-modal">
-    <div class="modal-content">
+    <div class="modal-card">
 
-      <div id="modal-header">
+      <div class="modal-meta">
         <span id="modal-category"></span>
+        <span class="modal-sep">·</span>
         <span id="modal-points"></span>
       </div>
 
@@ -62,14 +76,18 @@
         <div id="modal-status"></div>
       </div>
 
-      <!-- Host controls -->
       <div id="host-controls">
-        <button id="btn-correct" class="btn-correct" onclick="answerCorrect()">✓ Korrekt</button>
-        <button id="btn-wrong"   class="btn-wrong"   onclick="answerWrong()">✗ Falsch</button>
-        <button id="btn-close"   class="btn-close"   onclick="closeQuestion()">✕ Schließen</button>
+        <button id="btn-correct" class="btn-correct" onclick="answerCorrect()">
+          <span class="btn-icon">✓</span> Korrekt
+        </button>
+        <button id="btn-wrong" class="btn-wrong" onclick="answerWrong()">
+          <span class="btn-icon">✗</span> Falsch
+        </button>
+        <button id="btn-close" class="btn-close" onclick="closeQuestion()">
+          <span class="btn-icon">✕</span> Schließen
+        </button>
       </div>
 
-      <!-- Buzzer (players only) -->
       <button id="buzzer-btn" onclick="buzz()">BUZZ!</button>
 
     </div>

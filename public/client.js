@@ -1,10 +1,28 @@
 const socket = io();
 
 let myState = null;
-let amHost = false;
-let hasJoined = false;
+let amHost  = false;
 
-// ── Keyboard shortcut: Spacebar = Buzz ──────────────────────────────────────
+// ── Floating background emojis ───────────────────────────────────────────────
+const QUIZ_EMOJIS = ['🧠','💡','❓','🎯','🏆','⭐','🔍','📚','🎲','🤔','✨','🌟','💫','🎪','🏅'];
+
+function initEmojis() {
+  const container = document.getElementById('bg-emojis');
+  for (let i = 0; i < 16; i++) {
+    const el = document.createElement('div');
+    el.className = 'emoji-float';
+    el.textContent = QUIZ_EMOJIS[i % QUIZ_EMOJIS.length];
+    el.style.left            = `${Math.random() * 98}%`;
+    el.style.fontSize        = `${1.1 + Math.random() * 1.6}rem`;
+    el.style.animationDuration = `${14 + Math.random() * 22}s`;
+    el.style.animationDelay  = `-${Math.random() * 24}s`;
+    container.appendChild(el);
+  }
+}
+
+initEmojis();
+
+// ── Spacebar → Buzz ──────────────────────────────────────────────────────────
 document.addEventListener('keydown', (e) => {
   if ((e.code === 'Space' || e.key === ' ') && e.target.tagName !== 'INPUT') {
     e.preventDefault();
@@ -12,36 +30,29 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
-// ── Enter key to join ────────────────────────────────────────────────────────
+// ── Enter to join ────────────────────────────────────────────────────────────
 document.getElementById('player-name').addEventListener('keydown', (e) => {
   if (e.key === 'Enter') joinGame();
 });
 
-// ── Join game ────────────────────────────────────────────────────────────────
+// ── Join ─────────────────────────────────────────────────────────────────────
 function joinGame() {
   const nameInput = document.getElementById('player-name');
   const name = nameInput.value.trim();
-  if (!name) {
-    nameInput.focus();
-    return;
-  }
-  amHost = document.getElementById('is-host').checked;
-  hasJoined = true;
+  if (!name) { nameInput.focus(); return; }
 
+  amHost = document.getElementById('is-host').checked;
   socket.emit('join', { name, isHost: amHost });
 
-  document.getElementById('join-screen').style.display = 'none';
-  document.getElementById('game-screen').style.display = 'grid';
+  document.getElementById('join-screen').style.display  = 'none';
+  document.getElementById('game-screen').style.display  = 'flex';
 
-  if (amHost) {
-    document.getElementById('reset-btn').style.display = 'block';
-  }
+  if (amHost) document.getElementById('reset-btn').style.display = 'block';
 }
 
-// ── Receive state updates ────────────────────────────────────────────────────
+// ── State updates ────────────────────────────────────────────────────────────
 socket.on('gameState', (state) => {
   myState = state;
-  // Sync host flag in case of reconnect
   const me = state.players.find(p => p.id === state.myId);
   if (me) amHost = me.isHost;
   renderGame(state);
@@ -57,34 +68,36 @@ function renderGame(state) {
 
 function renderScoreBar(state) {
   const bar = document.getElementById('score-bar');
-  const nonHost = state.players.filter(p => !p.isHost);
-  bar.innerHTML = nonHost.map(p => {
-    const active = p.id === state.currentPlayerId ? 'active-turn' : '';
-    return `
-      <div class="player-score ${active}">
-        <div class="ps-name">${esc(p.name)}</div>
-        <div class="ps-score">${p.score}</div>
-      </div>`;
-  }).join('');
+  bar.innerHTML = state.players
+    .filter(p => !p.isHost)
+    .map(p => {
+      const active = p.id === state.currentPlayerId ? 'active-turn' : '';
+      return `
+        <div class="player-score ${active}">
+          <div class="ps-name">${esc(p.name)}</div>
+          <div class="ps-score">${p.score}</div>
+        </div>`;
+    }).join('');
 }
 
 function renderTurnIndicator(state) {
   const el = document.getElementById('turn-indicator');
   if (!state.currentPlayerName) {
-    el.textContent = 'Warte auf Spieler…';
+    el.innerHTML = 'Warte auf Spieler…';
     return;
   }
-  const isMe = state.currentPlayerId === state.myId;
-  if (isMe && !amHost) {
-    el.textContent = '⭐ Du bist dran!';
+  const isMe = state.currentPlayerId === state.myId && !amHost;
+  if (isMe) {
+    el.innerHTML = `<span class="highlight">⭐ Du bist dran!</span>`;
   } else {
-    el.textContent = `${esc(state.currentPlayerName)} ist dran`;
+    el.innerHTML = `<span class="highlight">${esc(state.currentPlayerName)}</span> ist dran`;
   }
 }
 
 function renderBoard(state) {
   const board = document.getElementById('board');
-  const isMyTurn = state.currentPlayerId === state.myId && !amHost;
+  // Host clicks questions on behalf of the current player
+  const canClick = amHost && state.phase === 'board';
   let html = '';
 
   // Category headers
@@ -92,20 +105,21 @@ function renderBoard(state) {
     html += `<div class="board-cell cat-header">${esc(cat.name)}</div>`;
   }
 
-  // 5 rows of questions
+  // 5 rows of question tiles
   for (let qi = 0; qi < 5; qi++) {
     for (let ci = 0; ci < state.categories.length; ci++) {
       const q = state.categories[ci].questions[qi];
-      const canSelect = isMyTurn && !q.answered && state.phase === 'board';
-      const selectableClass = canSelect ? 'selectable' : '';
-      const answeredClass = q.answered ? 'answered' : '';
-      const clickAttr = canSelect
-        ? `onclick="selectQuestion(${ci},${qi})"`
-        : '';
-      html += `
-        <div class="board-cell q-cell ${answeredClass} ${selectableClass}" ${clickAttr}>
-          ${q.answered ? '' : `<span>${q.points}</span>`}
-        </div>`;
+      const selectable = canClick && !q.answered;
+      const clickAttr  = selectable ? `onclick="selectQuestion(${ci},${qi})"` : '';
+      const classes    = [
+        'board-cell q-cell',
+        q.answered  ? 'answered'   : '',
+        selectable  ? 'selectable' : '',
+      ].filter(Boolean).join(' ');
+
+      html += `<div class="${classes}" ${clickAttr}>
+        ${q.answered ? '' : `<span class="pts">${q.points}</span>`}
+      </div>`;
     }
   }
 
@@ -115,47 +129,45 @@ function renderBoard(state) {
 function renderModal(state) {
   const modal = document.getElementById('question-modal');
 
-  // Hide modal when back on board
   if (state.phase === 'board' || !state.activeQuestion) {
     modal.style.display = 'none';
     return;
   }
-
   modal.style.display = 'flex';
 
   const q = state.activeQuestion;
-
   document.getElementById('modal-category').textContent = q.categoryName.toUpperCase();
-  document.getElementById('modal-points').textContent = `${q.points} Punkte`;
+  document.getElementById('modal-points').textContent   = `${q.points} Punkte`;
   document.getElementById('modal-question').textContent = q.question;
 
   // Answer — host only
   const answerEl = document.getElementById('modal-answer');
   if (amHost && q.answer) {
-    answerEl.textContent = `Antwort: ${q.answer}`;
+    answerEl.textContent = q.answer;
     answerEl.style.display = 'block';
   } else {
     answerEl.style.display = 'none';
   }
 
-  // Answerer / buzz / status text
+  // Status messages
   const answererEl = document.getElementById('modal-answerer');
   const statusEl   = document.getElementById('modal-status');
-
-  statusEl.className = ''; // reset classes
+  statusEl.className = '';
 
   if (state.phase === 'correct') {
     answererEl.textContent = '';
-    statusEl.textContent = 'Richtige Antwort! ✓';
+    statusEl.textContent   = 'Richtige Antwort! ✓';
     statusEl.classList.add('correct');
+
   } else if (state.phase === 'buzzering') {
     answererEl.textContent = '';
-    statusEl.textContent = 'Falsche Antwort! Es kann gebuzzert werden.';
+    statusEl.textContent   = 'Falsche Antwort! Es kann gebuzzert werden.';
     statusEl.classList.add('wrong');
+
   } else if (state.phase === 'question') {
     if (state.buzzedById) {
       answererEl.textContent = '';
-      statusEl.textContent = `⚡ ${esc(state.buzzedByName)} hat gebuzzert!`;
+      statusEl.textContent   = `⚡ ${esc(state.buzzedByName)} hat gebuzzert!`;
       statusEl.classList.add('buzzed');
     } else {
       answererEl.textContent = state.currentAnswererName
@@ -165,7 +177,7 @@ function renderModal(state) {
     }
   }
 
-  // Host control buttons
+  // Host controls
   const hostControls = document.getElementById('host-controls');
   const btnCorrect   = document.getElementById('btn-correct');
   const btnWrong     = document.getElementById('btn-wrong');
@@ -173,57 +185,40 @@ function renderModal(state) {
 
   if (amHost) {
     hostControls.style.display = 'flex';
-    // Correct & Wrong only make sense when someone is answering
     const answering = state.phase === 'question';
-    btnCorrect.style.display = answering ? 'inline-block' : 'none';
-    btnWrong.style.display   = answering ? 'inline-block' : 'none';
-    // Close available during buzzering (and question as emergency)
-    btnClose.style.display =
-      (state.phase === 'buzzering' || state.phase === 'question') ? 'inline-block' : 'none';
+    btnCorrect.style.display = answering ? 'inline-flex' : 'none';
+    btnWrong.style.display   = answering ? 'inline-flex' : 'none';
+    btnClose.style.display   = (state.phase === 'buzzering' || state.phase === 'question')
+      ? 'inline-flex' : 'none';
   } else {
     hostControls.style.display = 'none';
   }
 
-  // Buzzer button
+  // Buzzer
   const buzzerBtn = document.getElementById('buzzer-btn');
   const canBuzz =
     !amHost &&
     state.phase === 'buzzering' &&
     !state.wrongAnswererIds.includes(state.myId) &&
     !state.buzzedById;
-
   buzzerBtn.style.display = canBuzz ? 'block' : 'none';
 }
 
 // ── Actions ──────────────────────────────────────────────────────────────────
-function selectQuestion(categoryIndex, questionIndex) {
-  socket.emit('selectQuestion', { categoryIndex, questionIndex });
-}
-
-function answerCorrect() {
-  socket.emit('answerCorrect');
-}
-
-function answerWrong() {
-  socket.emit('answerWrong');
-}
+function selectQuestion(ci, qi) { socket.emit('selectQuestion', { categoryIndex: ci, questionIndex: qi }); }
+function answerCorrect()        { socket.emit('answerCorrect'); }
+function answerWrong()          { socket.emit('answerWrong'); }
+function closeQuestion()        { socket.emit('closeQuestion'); }
 
 function tryBuzz() {
-  if (!myState) return;
-  if (amHost) return;
+  if (!myState || amHost) return;
   if (myState.phase !== 'buzzering') return;
   if (myState.wrongAnswererIds.includes(myState.myId)) return;
   if (myState.buzzedById) return;
   socket.emit('buzz');
 }
 
-function buzz() {
-  tryBuzz();
-}
-
-function closeQuestion() {
-  socket.emit('closeQuestion');
-}
+function buzz() { tryBuzz(); }
 
 function resetGame() {
   if (confirm('Spiel wirklich zurücksetzen? Alle Punkte werden gelöscht.')) {
@@ -233,10 +228,6 @@ function resetGame() {
 
 // ── Util ─────────────────────────────────────────────────────────────────────
 function esc(str) {
-  if (!str) return '';
-  return String(str)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;');
+  return String(str ?? '')
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }

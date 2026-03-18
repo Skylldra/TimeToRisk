@@ -123,14 +123,14 @@ io.on('connection', (socket) => {
   });
 
   socket.on('selectQuestion', ({ categoryIndex, questionIndex }) => {
-    const currentPlayer = getCurrentPlayer();
-    if (!currentPlayer || currentPlayer.id !== socket.id) return;
+    const player = state.players.find(p => p.id === socket.id);
+    if (!player?.isHost) return;  // Only the host clicks questions
     if (state.phase !== 'board') return;
     if (isAnswered(categoryIndex, questionIndex)) return;
 
     state.activeQuestion = { categoryIndex, questionIndex };
     state.phase = 'question';
-    state.currentAnswererId = socket.id;
+    state.currentAnswererId = getCurrentPlayer()?.id || null;
     state.buzzedById = null;
     state.wrongAnswererIds = [];
     broadcastState();
@@ -246,5 +246,5 @@ io.on('connection', (socket) => {
 
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {
-  console.log(`Jeopardy server running on http://localhost:${PORT}`);
+  console.log(`TimeToRisk server running on http://localhost:${PORT}`);
 });
