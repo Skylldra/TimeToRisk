@@ -1,63 +1,140 @@
 {
-  "categories": [
+  "_hinweis": {
+    "info": "Bilder ablegen in: public/images/ (z.B. public/images/nike_logo.png)",
+    "frage_ohne_bild": { "points": 200, "question": "Fragetext hier", "answer": "Antwort hier" },
+    "frage_mit_bild":  { "points": 200, "question": "Welche Marke ist das?", "answer": "Nike", "image": "nike_logo.png" }
+  },
+
+  "boards": [
     {
-      "name": "Geografie",
-      "questions": [
-        { "points": 100, "question": "Was ist die Hauptstadt von Frankreich?", "answer": "Paris", "image": "image.jpg" },
-        { "points": 200, "question": "Auf welchem Kontinent liegt Ägypten?", "answer": "Afrika" },
-        { "points": 300, "question": "Welcher Fluss ist der längste der Welt?", "answer": "Nil" },
-        { "points": 400, "question": "Wie viele Länder hat der afrikanische Kontinent?", "answer": "54" },
-        { "points": 500, "question": "Welche Stadt liegt auf zwei Kontinenten?", "answer": "Istanbul (Europa und Asien)" }
+      "name": "Board 1",
+      "categories": [
+        {
+          "name": "Geografie",
+          "questions": [
+            { "points": 100, "question": "Was ist die Hauptstadt von Frankreich?", "answer": "Paris" },
+            { "points": 200, "question": "Auf welchem Kontinent liegt Ägypten?", "answer": "Afrika" },
+            { "points": 300, "question": "Welcher Fluss ist der längste der Welt?", "answer": "Nil" },
+            { "points": 400, "question": "Wie viele Länder hat der afrikanische Kontinent?", "answer": "54" },
+            { "points": 500, "question": "Welche Stadt liegt auf zwei Kontinenten?", "answer": "Istanbul (Europa und Asien)" }
+          ]
+        },
+        {
+          "name": "Geschichte",
+          "questions": [
+            { "points": 100, "question": "In welchem Jahr fiel die Berliner Mauer?", "answer": "1989" },
+            { "points": 200, "question": "In welchem Jahr begann der Zweite Weltkrieg?", "answer": "1939" },
+            { "points": 300, "question": "Welcher Römer wurde im Jahr 44 v. Chr. ermordet?", "answer": "Julius Caesar" },
+            { "points": 400, "question": "Wie hieß das Attentat, das den Ersten Weltkrieg auslöste?", "answer": "Attentat von Sarajevo (auf Franz Ferdinand)" },
+            { "points": 500, "question": "In welchem Jahr wurde die Magna Carta unterzeichnet?", "answer": "1215" }
+          ]
+        },
+        {
+          "name": "Wissenschaft",
+          "questions": [
+            { "points": 100, "question": "Was ist das chemische Symbol für Gold?", "answer": "Au" },
+            { "points": 200, "question": "Wie viele Planeten hat unser Sonnensystem?", "answer": "8" },
+            { "points": 300, "question": "Aus welchen zwei Elementen besteht Wasser (chemisch)?", "answer": "Wasserstoff (H) und Sauerstoff (O)" },
+            { "points": 400, "question": "Was ist die Lichtgeschwindigkeit in km/s (gerundet)?", "answer": "300.000 km/s" },
+            { "points": 500, "question": "Wie nennt man die Wissenschaft der Erdbeben?", "answer": "Seismologie" }
+          ]
+        },
+        {
+          "name": "Sport",
+          "questions": [
+            { "points": 100, "question": "Wie viele Spieler hat eine Fußballmannschaft auf dem Feld?", "answer": "11" },
+            { "points": 200, "question": "In welchem Land fanden die Olympischen Sommerspiele 2024 statt?", "answer": "Frankreich (Paris)" },
+            { "points": 300, "question": "Wie viele Grand-Slam-Turniere gibt es im Tennis pro Jahr?", "answer": "4" },
+            { "points": 400, "question": "In welchem Sport gibt es den Begriff 'Birdie'?", "answer": "Golf" },
+            { "points": 500, "question": "Welcher Formel-1-Fahrer hat die meisten Weltmeisterschaften gewonnen?", "answer": "Lewis Hamilton (8 Titel)" }
+          ]
+        },
+        {
+          "name": "Filme & Serien",
+          "questions": [
+            { "points": 100, "question": "Welche Filmreihe handelt von einem Zauberschüler namens Harry?", "answer": "Harry Potter" },
+            { "points": 200, "question": "In welchem Disney-Film singt Elsa 'Let It Go'?", "answer": "Frozen (Die Eiskönigin)" },
+            { "points": 300, "question": "Wie heißt der Hauptcharakter in 'Breaking Bad'?", "answer": "Walter White" },
+            { "points": 400, "question": "Welcher Regisseur drehte 'Inception' und 'The Dark Knight'?", "answer": "Christopher Nolan" },
+            { "points": 500, "question": "In welchem Jahr wurde der erste Star-Wars-Film veröffentlicht?", "answer": "1977" }
+          ]
+        },
+        {
+          "name": "Musik",
+          "questions": [
+            { "points": 100, "question": "Aus welchem Land stammt die Band ABBA?", "answer": "Schweden" },
+            { "points": 200, "question": "Wer sang 'Bohemian Rhapsody'?", "answer": "Queen (Freddie Mercury)" },
+            { "points": 300, "question": "Wie viele Saiten hat eine klassische Gitarre?", "answer": "6" },
+            { "points": 400, "question": "Welcher Komponist schrieb die Mondscheinsonate?", "answer": "Ludwig van Beethoven" },
+            { "points": 500, "question": "Wie heißt das erste Studioalbum der Beatles?", "answer": "Please Please Me (1963)" }
+          ]
+        }
       ]
     },
+
     {
-      "name": "Geschichte",
-      "questions": [
-        { "points": 100, "question": "In welchem Jahr fiel die Berliner Mauer?", "answer": "1989" },
-        { "points": 200, "question": "In welchem Jahr begann der Zweite Weltkrieg?", "answer": "1939" },
-        { "points": 300, "question": "Welcher Römer wurde im Jahr 44 v. Chr. ermordet?", "answer": "Julius Caesar" },
-        { "points": 400, "question": "Wie hieß das Attentat, das den Ersten Weltkrieg auslöste?", "answer": "Attentat von Sarajevo (auf Franz Ferdinand)" },
-        { "points": 500, "question": "In welchem Jahr wurde die Magna Carta unterzeichnet?", "answer": "1215" }
-      ]
-    },
-    {
-      "name": "Wissenschaft",
-      "questions": [
-        { "points": 100, "question": "Was ist das chemische Symbol für Gold?", "answer": "Au" },
-        { "points": 200, "question": "Wie viele Planeten hat unser Sonnensystem?", "answer": "8" },
-        { "points": 300, "question": "Aus welchen zwei Elementen besteht Wasser (chemisch)?", "answer": "Wasserstoff (H) und Sauerstoff (O)" },
-        { "points": 400, "question": "Was ist die Lichtgeschwindigkeit in km/s (gerundet)?", "answer": "300.000 km/s" },
-        { "points": 500, "question": "Wie nennt man die Wissenschaft der Erdbeben?", "answer": "Seismologie" }
-      ]
-    },
-    {
-      "name": "Sport",
-      "questions": [
-        { "points": 100, "question": "Wie viele Spieler hat eine Fußballmannschaft auf dem Feld?", "answer": "11" },
-        { "points": 200, "question": "In welchem Land fanden die Olympischen Sommerspiele 2024 statt?", "answer": "Frankreich (Paris)" },
-        { "points": 300, "question": "Wie viele Grand-Slam-Turniere gibt es im Tennis pro Jahr?", "answer": "4" },
-        { "points": 400, "question": "In welchem Sport gibt es den Begriff 'Birdie'?", "answer": "Golf" },
-        { "points": 500, "question": "Welcher Formel-1-Fahrer hat die meisten Weltmeisterschaften gewonnen?", "answer": "Lewis Hamilton (8 Titel)" }
-      ]
-    },
-    {
-      "name": "Filme & Serien",
-      "questions": [
-        { "points": 100, "question": "Welche Filmreihe handelt von einem Zauberschüler namens Harry?", "answer": "Harry Potter" },
-        { "points": 200, "question": "In welchem Disney-Film singt Elsa 'Let It Go'?", "answer": "Frozen (Die Eiskönigin)" },
-        { "points": 300, "question": "Wie heißt der Hauptcharakter in 'Breaking Bad'?", "answer": "Walter White" },
-        { "points": 400, "question": "Welcher Regisseur drehte 'Inception' und 'The Dark Knight'?", "answer": "Christopher Nolan" },
-        { "points": 500, "question": "In welchem Jahr wurde der erste Star-Wars-Film veröffentlicht?", "answer": "1977" }
-      ]
-    },
-    {
-      "name": "Musik",
-      "questions": [
-        { "points": 100, "question": "Aus welchem Land stammt die Band ABBA?", "answer": "Schweden" },
-        { "points": 200, "question": "Wer sang 'Bohemian Rhapsody'?", "answer": "Queen (Freddie Mercury)" },
-        { "points": 300, "question": "Wie viele Saiten hat eine klassische Gitarre?", "answer": "6" },
-        { "points": 400, "question": "Welcher Komponist schrieb die Mondscheinsonate?", "answer": "Ludwig van Beethoven" },
-        { "points": 500, "question": "Wie heißt das erste Studioalbum der Beatles?", "answer": "Please Please Me (1963)" }
+      "name": "Board 2 — Doppelrunde",
+      "categories": [
+        {
+          "name": "Populärkultur",
+          "questions": [
+            { "points": 200, "question": "Wie heißt der Zauberwürfel mit 3×3 Feldern?", "answer": "Rubik's Cube" },
+            { "points": 400, "question": "In welcher Stadt spielt die Serie 'Stranger Things'?", "answer": "Hawkins (Indiana)" },
+            { "points": 600, "question": "Wie viele Steine hat ein Standard-Dominoset (Doppel-6)?", "answer": "28" },
+            { "points": 800, "question": "Welches Videospiel hält den Rekord als meistverkauftes aller Zeiten?", "answer": "Minecraft" },
+            { "points": 1000, "question": "In welchem Jahr wurde das erste iPhone vorgestellt?", "answer": "2007" }
+          ]
+        },
+        {
+          "name": "Natur & Tiere",
+          "questions": [
+            { "points": 200, "question": "Wie viele Herzen hat ein Oktopus?", "answer": "3" },
+            { "points": 400, "question": "Was ist das schwerste Landtier der Welt?", "answer": "Afrikanischer Elefant" },
+            { "points": 600, "question": "Wie nennt man junge Kängurus in ihrem Beutel?", "answer": "Joey" },
+            { "points": 800, "question": "Welcher Baum kann über 5.000 Jahre alt werden?", "answer": "Grannenföhre (Bristlecone Pine)" },
+            { "points": 1000, "question": "Wie viele Augen hat eine Spinne typischerweise?", "answer": "8" }
+          ]
+        },
+        {
+          "name": "Technik & Internet",
+          "questions": [
+            { "points": 200, "question": "Wofür steht die Abkürzung 'URL'?", "answer": "Uniform Resource Locator" },
+            { "points": 400, "question": "In welchem Land wurde IKEA gegründet?", "answer": "Schweden" },
+            { "points": 600, "question": "Wie viele Bits hat ein Byte?", "answer": "8" },
+            { "points": 800, "question": "Wer gründete Tesla gemeinsam mit Elon Musk?", "answer": "Martin Eberhard und Marc Tarpenning" },
+            { "points": 1000, "question": "In welchem Jahr wurde das World Wide Web öffentlich zugänglich?", "answer": "1991" }
+          ]
+        },
+        {
+          "name": "Essen & Trinken",
+          "questions": [
+            { "points": 200, "question": "Aus welchem Land stammt Sushi?", "answer": "Japan" },
+            { "points": 400, "question": "Wie heißt der Käse mit blauen Schimmeladern?", "answer": "Roquefort / Gorgonzola / Blauschimmelkäse" },
+            { "points": 600, "question": "Was ist die Hauptzutat von Guacamole?", "answer": "Avocado" },
+            { "points": 800, "question": "Aus welcher Pflanze wird Schokolade hergestellt?", "answer": "Kakaobaum (Theobroma cacao)" },
+            { "points": 1000, "question": "Wie viele Liter fasst ein Magnum (Weinflasche)?", "answer": "1,5 Liter" }
+          ]
+        },
+        {
+          "name": "Sprichwörter",
+          "questions": [
+            { "points": 200, "question": "Vervollständige: 'Wer zuletzt lacht, …'", "answer": "… lacht am besten" },
+            { "points": 400, "question": "Vervollständige: 'Der Apfel fällt nicht weit …'", "answer": "… vom Stamm" },
+            { "points": 600, "question": "Vervollständige: 'Viele Köche …'", "answer": "… verderben den Brei" },
+            { "points": 800, "question": "Vervollständige: 'Wer den Pfennig nicht ehrt, …'", "answer": "… ist des Talers nicht wert" },
+            { "points": 1000, "question": "Vervollständige: 'Morgenstund hat …'", "answer": "… Gold im Mund" }
+          ]
+        },
+        {
+          "name": "Körper & Gesundheit",
+          "questions": [
+            { "points": 200, "question": "Wie viele Zähne hat ein gesunder Erwachsener (ohne Weisheitszähne)?", "answer": "28" },
+            { "points": 400, "question": "Wie heißt der größte Knochen im menschlichen Körper?", "answer": "Oberschenkelknochen (Femur)" },
+            { "points": 600, "question": "Wie viele Liter Blut hat ein durchschnittlicher Mensch?", "answer": "ca. 5–6 Liter" },
+            { "points": 800, "question": "Welches Organ produziert Insulin?", "answer": "Bauchspeicheldrüse (Pankreas)" },
+            { "points": 1000, "question": "Wie viele Knochen hat ein neugeborenes Baby?", "answer": "ca. 300 (Erwachsener: 206)" }
+          ]
+        }
       ]
     }
   ]

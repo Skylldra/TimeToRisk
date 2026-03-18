@@ -16,16 +16,21 @@ let state = createInitialState();
 function createInitialState() {
   return {
     players: [],
+    currentBoardIndex: 0,
     currentTurnIndex: 0,
     questionOwnerTurnIndex: 0,
     answeredQuestions: [],
-    // 'board' | 'question' | 'buzzering' | 'correct'
+    // 'board' | 'question' | 'buzzering' | 'correct' | 'boardComplete'
     phase: 'board',
     activeQuestion: null,   // { categoryIndex, questionIndex }
     currentAnswererId: null,
     buzzedById: null,
     wrongAnswererIds: [],
   };
+}
+
+function getCurrentCategories() {
+  return questions.boards[state.currentBoardIndex].categories;
 }
 
 function getNonHostPlayers() {
@@ -44,6 +49,19 @@ function isAnswered(catIdx, qIdx) {
   );
 }
 
+function isBoardComplete() {
+  const cats = getCurrentCategories();
+  let total = 0;
+  for (const cat of cats) total += cat.questions.length;
+  return state.answeredQuestions.length >= total;
+}
+
+function resolvePhaseAfterQuestion() {
+  if (!isBoardComplete()) return 'board';
+  if (state.currentBoardIndex < questions.boards.length - 1) return 'boardComplete';
+  return 'gameOver';
+}
+
 function getStateForPlayer(playerId) {
   const player = state.players.find(p => p.id === playerId);
   const isHost = player?.isHost || false;
@@ -58,17 +76,20 @@ function getStateForPlayer(playerId) {
   let activeQuestionData = null;
   if (state.activeQuestion !== null) {
     const { categoryIndex, questionIndex } = state.activeQuestion;
-    const q = questions.categories[categoryIndex].questions[questionIndex];
+    const cats = getCurrentCategories();
+    const q = cats[categoryIndex].questions[questionIndex];
     activeQuestionData = {
       categoryIndex,
       questionIndex,
-      categoryName: questions.categories[categoryIndex].name,
+      categoryName: cats[categoryIndex].name,
       points: q.points,
       question: q.question,
       answer: isHost ? q.answer : null,
       image: q.image || null,
     };
   }
+
+  const cats = getCurrentCategories();
 
   return {
     myId: playerId,
@@ -81,7 +102,7 @@ function getStateForPlayer(playerId) {
     })),
     currentPlayerId: currentPlayer?.id || null,
     currentPlayerName: currentPlayer?.name || null,
-    categories: questions.categories.map((cat, ci) => ({
+    categories: cats.map((cat, ci) => ({
       name: cat.name,
       questions: cat.questions.map((q, qi) => ({
         points: q.points,
@@ -95,6 +116,9 @@ function getStateForPlayer(playerId) {
     buzzedById: state.buzzedById,
     buzzedByName: buzzer?.name || null,
     wrongAnswererIds: state.wrongAnswererIds,
+    currentBoardIndex: state.currentBoardIndex,
+    totalBoards: questions.boards.length,
+    boardName: questions.boards[state.currentBoardIndex].name || null,
   };
 }
 
@@ -109,26 +133,22 @@ function broadcastState() {
 
 // --- Socket Events ---
 io.on('connection', (socket) => {
-  // Send current state on connect (before joining)
   socket.emit('gameState', getStateForPlayer(socket.id));
 
   socket.on('join', ({ name, isHost }) => {
     const trimmed = (name || 'Spieler').trim().slice(0, 24);
 
-    // Reconnect: find a disconnected player with the same name
     const existing = state.players.find(p => p.name === trimmed && p.connected === false);
 
     if (existing) {
       const oldId = existing.id;
       existing.id = socket.id;
       existing.connected = true;
-      // Update any state references that held the old socket id
       if (state.currentAnswererId === oldId) state.currentAnswererId = socket.id;
       if (state.buzzedById === oldId) state.buzzedById = socket.id;
       const wi = state.wrongAnswererIds.indexOf(oldId);
       if (wi !== -1) state.wrongAnswererIds[wi] = socket.id;
     } else {
-      // New player — remove any stale entry with this socket id first
       state.players = state.players.filter(p => p.id !== socket.id);
       state.players.push({
         id: socket.id,
@@ -143,7 +163,7 @@ io.on('connection', (socket) => {
 
   socket.on('selectQuestion', ({ categoryIndex, questionIndex }) => {
     const player = state.players.find(p => p.id === socket.id);
-    if (!player?.isHost) return;  // Only the host clicks questions
+    if (!player?.isHost) return;
     if (state.phase !== 'board') return;
     if (isAnswered(categoryIndex, questionIndex)) return;
 
@@ -162,7 +182,8 @@ io.on('connection', (socket) => {
     if (state.phase !== 'question' || !state.activeQuestion) return;
 
     const { categoryIndex, questionIndex } = state.activeQuestion;
-    const points = questions.categories[categoryIndex].questions[questionIndex].points;
+    const cats = getCurrentCategories();
+    const points = cats[categoryIndex].questions[questionIndex].points;
     const answererId = state.currentAnswererId;
 
     // Award points
@@ -175,7 +196,6 @@ io.on('connection', (socket) => {
       state.currentTurnIndex = (state.questionOwnerTurnIndex + 1) % nonHost.length;
     }
 
-    // Mark question answered immediately so board updates
     state.answeredQuestions.push({ categoryIndex, questionIndex });
     state.phase = 'correct';
     broadcastState();
@@ -183,7 +203,7 @@ io.on('connection', (socket) => {
     // Auto-close modal after 2 seconds
     setTimeout(() => {
       state.activeQuestion = null;
-      state.phase = 'board';
+      state.phase = resolvePhaseAfterQuestion();
       state.currentAnswererId = null;
       state.buzzedById = null;
       state.wrongAnswererIds = [];
@@ -197,10 +217,10 @@ io.on('connection', (socket) => {
     if (state.phase !== 'question' || !state.activeQuestion) return;
 
     const { categoryIndex, questionIndex } = state.activeQuestion;
-    const points = questions.categories[categoryIndex].questions[questionIndex].points;
+    const cats = getCurrentCategories();
+    const points = cats[categoryIndex].questions[questionIndex].points;
     const penalty = Math.floor(points / 2);
 
-    // Deduct half the question's points from the wrong answerer
     const wrongPlayer = state.players.find(p => p.id === state.currentAnswererId);
     if (wrongPlayer) wrongPlayer.score -= penalty;
 
@@ -231,9 +251,8 @@ io.on('connection', (socket) => {
     const player = state.players.find(p => p.id === socket.id);
     if (!player?.isHost) return;
     if (!state.activeQuestion) return;
-    if (state.phase === 'correct') return; // turn already advanced by answerCorrect
+    if (state.phase === 'correct') return;
 
-    // Advance to the player after whoever owned this question's turn
     const nonHost = getNonHostPlayers();
     if (nonHost.length > 0) {
       state.currentTurnIndex = (state.questionOwnerTurnIndex + 1) % nonHost.length;
@@ -241,10 +260,40 @@ io.on('connection', (socket) => {
 
     state.answeredQuestions.push({ ...state.activeQuestion });
     state.activeQuestion = null;
-    state.phase = 'board';
+    state.phase = resolvePhaseAfterQuestion();
     state.currentAnswererId = null;
     state.buzzedById = null;
     state.wrongAnswererIds = [];
+    broadcastState();
+  });
+
+  socket.on('startNextBoard', () => {
+    const player = state.players.find(p => p.id === socket.id);
+    if (!player?.isHost) return;
+    if (state.phase !== 'boardComplete') return;
+    if (state.currentBoardIndex >= questions.boards.length - 1) return;
+
+    state.currentBoardIndex++;
+    state.answeredQuestions = [];
+    state.activeQuestion = null;
+    state.currentAnswererId = null;
+    state.buzzedById = null;
+    state.wrongAnswererIds = [];
+
+    // Player with fewest points goes first
+    const nonHost = getNonHostPlayers();
+    if (nonHost.length > 0) {
+      let minScore = Infinity;
+      let minIndex = 0;
+      nonHost.forEach((p, i) => {
+        if (p.score < minScore) { minScore = p.score; minIndex = i; }
+      });
+      state.currentTurnIndex = minIndex;
+      state.questionOwnerTurnIndex = minIndex;
+    }
+
+    state.phase = 'board';
+    io.emit('nextBoardStarted');
     broadcastState();
   });
 
@@ -260,7 +309,6 @@ io.on('connection', (socket) => {
   socket.on('resetGame', () => {
     const player = state.players.find(p => p.id === socket.id);
     if (!player?.isHost) return;
-    // Full reset: kick everyone out and wipe all state
     io.emit('fullReset');
     state = createInitialState();
   });
@@ -268,7 +316,6 @@ io.on('connection', (socket) => {
   socket.on('disconnect', () => {
     const player = state.players.find(p => p.id === socket.id);
     if (player) {
-      // Keep the player in state (so they can reconnect) but mark as disconnected
       player.connected = false;
       const nonHost = getNonHostPlayers();
       if (nonHost.length > 0) {

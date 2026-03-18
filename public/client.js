@@ -97,8 +97,13 @@ function rejoinAs(btn) {
 function renderGame(state) {
   renderScoreBar(state);
   renderTurnIndicator(state);
-  renderBoard(state);
-  renderModal(state);
+  if (state.phase === 'gameOver') {
+    renderGameOver(state);
+    document.getElementById('question-modal').style.display = 'none';
+  } else {
+    renderBoard(state);
+    renderModal(state);
+  }
 }
 
 function renderScoreBar(state) {
@@ -117,6 +122,10 @@ function renderScoreBar(state) {
 
 function renderTurnIndicator(state) {
   const el = document.getElementById('turn-indicator');
+  if (state.phase === 'gameOver') {
+    el.innerHTML = `<span class="highlight">🎉 Spiel beendet!</span>`;
+    return;
+  }
   if (!state.currentPlayerName) {
     el.innerHTML = 'Warte auf Spieler…';
     return;
@@ -131,6 +140,24 @@ function renderTurnIndicator(state) {
 
 function renderBoard(state) {
   const board = document.getElementById('board');
+
+  // Board complete screen
+  if (state.phase === 'boardComplete') {
+    const boardNum = state.currentBoardIndex + 1;
+    board.innerHTML = `
+      <div class="board-complete">
+        <div class="bc-icon">🏆</div>
+        <div class="bc-title">Board ${boardNum} abgeschlossen!</div>
+        ${amHost
+          ? `<button class="bc-btn" onclick="startNextBoard()">
+               ⚡ Doppelrunde starten
+             </button>`
+          : `<div class="bc-wait">Wartet auf den Host…</div>`
+        }
+      </div>`;
+    return;
+  }
+
   // Host clicks questions on behalf of the current player
   const canClick = amHost && state.phase === 'board';
   let html = '';
@@ -256,6 +283,7 @@ socket.on('fullReset', () => {
   myState   = null;
   pmPlayerId = null;
 
+  document.getElementById('board').classList.remove('game-over');
   document.getElementById('game-screen').style.display    = 'none';
   document.getElementById('question-modal').style.display = 'none';
   document.getElementById('points-modal').style.display   = 'none';
@@ -326,6 +354,7 @@ function pmSave() {
 
 // ── Actions ──────────────────────────────────────────────────────────────────
 function selectQuestion(ci, qi) { socket.emit('selectQuestion', { categoryIndex: ci, questionIndex: qi }); }
+function startNextBoard()        { socket.emit('startNextBoard'); }
 function answerCorrect()        { socket.emit('answerCorrect'); }
 function answerWrong()          { socket.emit('answerWrong'); }
 function closeQuestion()        { socket.emit('closeQuestion'); }
@@ -345,6 +374,57 @@ function resetGame() {
     socket.emit('resetGame');
   }
 }
+
+// ── Game over / Podium ───────────────────────────────────────────────────────
+function renderGameOver(state) {
+  const board = document.getElementById('board');
+  board.classList.add('game-over');
+
+  const sorted = state.players
+    .filter(p => !p.isHost)
+    .sort((a, b) => b.score - a.score);
+
+  // Podium: order left-to-right is 2nd, 1st, 3rd
+  const podiumOrder = [sorted[1], sorted[0], sorted[2]]
+    .map((p, i) => p ? { player: p, rank: [2, 1, 3][i] } : null)
+    .filter(Boolean);
+
+  const podiumHtml = `
+    <div class="go-podium">
+      ${podiumOrder.map(({ player, rank }) => `
+        <div class="podium-slot rank-${rank}">
+          ${rank === 1 ? '<div class="podium-crown">👑</div>' : ''}
+          <div class="podium-pname">${esc(player.name)}</div>
+          <div class="podium-pscore">${player.score}</div>
+          <div class="podium-block"><span class="podium-num">${rank}</span></div>
+        </div>`).join('')}
+    </div>`;
+
+  const rest = sorted.slice(3);
+  const restHtml = rest.length ? `
+    <div class="go-rest">
+      ${rest.map((p, i) => `
+        <div class="go-rest-row">
+          <span class="go-rest-rank">${i + 4}.</span>
+          <span class="go-rest-name">${esc(p.name)}</span>
+          <span class="go-rest-score">${p.score} Punkte</span>
+        </div>`).join('')}
+    </div>` : '';
+
+  board.innerHTML = `
+    <div class="go-bee">🐝</div>
+    <div class="go-title">Sehr fleißiges Bienchen</div>
+    ${podiumHtml}
+    ${restHtml}`;
+}
+
+// ── X2 animation ─────────────────────────────────────────────────────────────
+socket.on('nextBoardStarted', () => {
+  const el = document.querySelector('.x2-content');
+  el.classList.remove('playing');
+  void el.offsetWidth; // force reflow so animation restarts
+  el.classList.add('playing');
+});
 
 // ── Image fullscreen ─────────────────────────────────────────────────────────
 function openFullscreen(src) {
