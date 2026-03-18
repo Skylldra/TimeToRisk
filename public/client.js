@@ -175,6 +175,16 @@ function renderModal(state) {
   document.getElementById('modal-points').textContent   = `${q.points} Punkte`;
   document.getElementById('modal-question').textContent = q.question;
 
+  // Image (optional)
+  const imgEl = document.getElementById('modal-image');
+  if (q.image) {
+    imgEl.src = '/images/' + q.image;
+    imgEl.style.display = 'block';
+  } else {
+    imgEl.style.display = 'none';
+    imgEl.src = '';
+  }
+
   // Answer — host only
   const answerEl = document.getElementById('modal-answer');
   if (amHost && q.answer) {
@@ -335,6 +345,20 @@ function resetGame() {
     socket.emit('resetGame');
   }
 }
+
+// ── Image fullscreen ─────────────────────────────────────────────────────────
+function openFullscreen(src) {
+  document.getElementById('img-fullscreen-img').src = src;
+  document.getElementById('img-fullscreen').style.display = 'flex';
+}
+
+function closeFullscreen() {
+  document.getElementById('img-fullscreen').style.display = 'none';
+}
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeFullscreen();
+});
 
 // ── Util ─────────────────────────────────────────────────────────────────────
 function esc(str) {

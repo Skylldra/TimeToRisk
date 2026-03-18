@@ -66,6 +66,7 @@ function getStateForPlayer(playerId) {
       points: q.points,
       question: q.question,
       answer: isHost ? q.answer : null,
+      image: q.image || null,
     };
   }
 

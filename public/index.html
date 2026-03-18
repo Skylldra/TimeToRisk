@@ -65,6 +65,7 @@
         <span id="modal-points"></span>
       </div>
       <div id="modal-question"></div>
+      <img id="modal-image" alt="" onclick="openFullscreen(this.src)">
       <div id="modal-answer"></div>
       <div id="modal-info">
         <div id="modal-answerer"></div>
@@ -114,6 +115,12 @@
       </div>
 
     </div>
+  </div>
+
+  <!-- ═══════════════════ IMAGE FULLSCREEN ═══════════════════ -->
+  <div id="img-fullscreen" onclick="closeFullscreen()">
+    <img id="img-fullscreen-img" alt="">
+    <div class="fs-hint">Klicken zum Schließen</div>
   </div>
 
   <script src="/socket.io/socket.io.js"></script>
