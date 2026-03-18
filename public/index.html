@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jeopardy</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- =================== JOIN SCREEN =================== -->
+  <div id="join-screen">
+    <div class="join-box">
+      <div class="join-logo">JEOPARDY</div>
+      <input
+        type="text"
+        id="player-name"
+        placeholder="Dein Name"
+        maxlength="24"
+        autocomplete="off"
+      >
+      <label class="host-label">
+        <input type="checkbox" id="is-host">
+        <span>Ich bin der Host (Spielleiter)</span>
+      </label>
+      <button class="join-btn" onclick="joinGame()">Spiel beitreten</button>
+    </div>
+  </div>
+
+  <!-- =================== GAME SCREEN =================== -->
+  <div id="game-screen">
+
+    <div id="header">
+      <div id="turn-indicator">Warte auf Spieler...</div>
+    </div>
+
+    <div id="score-bar"></div>
+
+    <div id="board"></div>
+
+    <!-- Host-only: reset button bottom-right -->
+    <button id="reset-btn" onclick="resetGame()">Spiel zurücksetzen</button>
+
+  </div>
+
+  <!-- =================== QUESTION MODAL =================== -->
+  <div id="question-modal">
+    <div class="modal-content">
+
+      <div id="modal-header">
+        <span id="modal-category"></span>
+        <span id="modal-points"></span>
+      </div>
+
+      <div id="modal-question"></div>
+
+      <div id="modal-answer"></div>
+
+      <div id="modal-info">
+        <div id="modal-answerer"></div>
+        <div id="modal-status"></div>
+      </div>
+
+      <!-- Host controls -->
+      <div id="host-controls">
+        <button id="btn-correct" class="btn-correct" onclick="answerCorrect()">✓ Korrekt</button>
+        <button id="btn-wrong"   class="btn-wrong"   onclick="answerWrong()">✗ Falsch</button>
+        <button id="btn-close"   class="btn-close"   onclick="closeQuestion()">✕ Schließen</button>
+      </div>
+
+      <!-- Buzzer (players only) -->
+      <button id="buzzer-btn" onclick="buzz()">BUZZ!</button>
+
+    </div>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="client.js"></script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+{
+  "categories": [
+    {
+      "name": "Geografie",
+      "questions": [
+        { "points": 100, "question": "Was ist die Hauptstadt von Frankreich?", "answer": "Paris" },
+        { "points": 200, "question": "Auf welchem Kontinent liegt Ägypten?", "answer": "Afrika" },
+        { "points": 300, "question": "Welcher Fluss ist der längste der Welt?", "answer": "Nil" },
+        { "points": 400, "question": "Wie viele Länder hat der afrikanische Kontinent?", "answer": "54" },
+        { "points": 500, "question": "Welche Stadt liegt auf zwei Kontinenten?", "answer": "Istanbul (Europa und Asien)" }
+      ]
+    },
+    {
+      "name": "Geschichte",
+      "questions": [
+        { "points": 100, "question": "In welchem Jahr fiel die Berliner Mauer?", "answer": "1989" },
+        { "points": 200, "question": "In welchem Jahr begann der Zweite Weltkrieg?", "answer": "1939" },
+        { "points": 300, "question": "Welcher Römer wurde im Jahr 44 v. Chr. ermordet?", "answer": "Julius Caesar" },
+        { "points": 400, "question": "Wie hieß das Attentat, das den Ersten Weltkrieg auslöste?", "answer": "Attentat von Sarajevo (auf Franz Ferdinand)" },
+        { "points": 500, "question": "In welchem Jahr wurde die Magna Carta unterzeichnet?", "answer": "1215" }
+      ]
+    },
+    {
+      "name": "Wissenschaft",
+      "questions": [
+        { "points": 100, "question": "Was ist das chemische Symbol für Gold?", "answer": "Au" },
+        { "points": 200, "question": "Wie viele Planeten hat unser Sonnensystem?", "answer": "8" },
+        { "points": 300, "question": "Aus welchen zwei Elementen besteht Wasser (chemisch)?", "answer": "Wasserstoff (H) und Sauerstoff (O)" },
+        { "points": 400, "question": "Was ist die Lichtgeschwindigkeit in km/s (gerundet)?", "answer": "300.000 km/s" },
+        { "points": 500, "question": "Wie nennt man die Wissenschaft der Erdbeben?", "answer": "Seismologie" }
+      ]
+    },
+    {
+      "name": "Sport",
+      "questions": [
+        { "points": 100, "question": "Wie viele Spieler hat eine Fußballmannschaft auf dem Feld?", "answer": "11" },
+        { "points": 200, "question": "In welchem Land fanden die Olympischen Sommerspiele 2024 statt?", "answer": "Frankreich (Paris)" },
+        { "points": 300, "question": "Wie viele Grand-Slam-Turniere gibt es im Tennis pro Jahr?", "answer": "4" },
+        { "points": 400, "question": "In welchem Sport gibt es den Begriff 'Birdie'?", "answer": "Golf" },
+        { "points": 500, "question": "Welcher Formel-1-Fahrer hat die meisten Weltmeisterschaften gewonnen?", "answer": "Lewis Hamilton (8 Titel)" }
+      ]
+    },
+    {
+      "name": "Filme & Serien",
+      "questions": [
+        { "points": 100, "question": "Welche Filmreihe handelt von einem Zauberschüler namens Harry?", "answer": "Harry Potter" },
+        { "points": 200, "question": "In welchem Disney-Film singt Elsa 'Let It Go'?", "answer": "Frozen (Die Eiskönigin)" },
+        { "points": 300, "question": "Wie heißt der Hauptcharakter in 'Breaking Bad'?", "answer": "Walter White" },
+        { "points": 400, "question": "Welcher Regisseur drehte 'Inception' und 'The Dark Knight'?", "answer": "Christopher Nolan" },
+        { "points": 500, "question": "In welchem Jahr wurde der erste Star-Wars-Film veröffentlicht?", "answer": "1977" }
+      ]
+    },
+    {
+      "name": "Musik",
+      "questions": [
+        { "points": 100, "question": "Aus welchem Land stammt die Band ABBA?", "answer": "Schweden" },
+        { "points": 200, "question": "Wer sang 'Bohemian Rhapsody'?", "answer": "Queen (Freddie Mercury)" },
+        { "points": 300, "question": "Wie viele Saiten hat eine klassische Gitarre?", "answer": "6" },
+        { "points": 400, "question": "Welcher Komponist schrieb die Mondscheinsonate?", "answer": "Ludwig van Beethoven" },
+        { "points": 500, "question": "Wie heißt das erste Studioalbum der Beatles?", "answer": "Please Please Me (1963)" }
+      ]
+    }
+  ]
+}
