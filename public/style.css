@@ -67,8 +67,8 @@ body {
 
 @keyframes floatUp {
   0%   { transform: translateY(0)     rotate(0deg)   scale(.9); opacity: 0; }
-  6%   { opacity: .07; }
-  92%  { opacity: .07; }
+  6%   { opacity: .18; }
+  92%  { opacity: .18; }
   100% { transform: translateY(-115vh) rotate(540deg) scale(1.1); opacity: 0; }
 }
 
@@ -220,15 +220,82 @@ body {
 .join-arrow { display: inline-block; transition: transform var(--transition); }
 .join-btn:hover .join-arrow { transform: translateX(3px); }
 
+/* Active players list on join screen */
+#join-players:not(:empty) {
+  margin-top: 22px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,.08);
+}
+
+.jp-label {
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin-bottom: 10px;
+}
+
+.jp-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  justify-content: center;
+}
+
+.jp-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 15px;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 99px;
+  color: var(--text-dim);
+  font-family: inherit;
+  font-size: .88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.jp-chip.online {
+  color: var(--text);
+  border-color: rgba(147,51,234,.3);
+}
+
+.jp-chip.offline {
+  opacity: .5;
+}
+
+.jp-chip:hover {
+  background: var(--pg);
+  border-color: var(--pg-border);
+  color: var(--p300);
+  transform: translateY(-1px);
+  opacity: 1;
+}
+
+.jp-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.jp-chip.online  .jp-dot { background: var(--green); box-shadow: 0 0 6px rgba(34,197,94,.7); }
+.jp-chip.offline .jp-dot { background: #555; }
+
 /* ═══════════════ GAME SCREEN ═══════════════ */
 
 #game-screen {
   display: none;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   min-height: 100vh;
-  padding: 18px 16px 24px;
-  gap: 14px;
+  padding: 24px 16px;
+  gap: 16px;
   position: relative;
   z-index: 10;
 }
@@ -322,10 +389,10 @@ body {
 #board {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  grid-template-rows: 58px repeat(5, 68px);
-  gap: 6px;
+  grid-template-rows: 70px repeat(5, 90px);
+  gap: 8px;
   width: 100%;
-  max-width: 960px;
+  max-width: 1060px;
 }
 
 .board-cell {
@@ -342,7 +409,7 @@ body {
 .cat-header {
   background: linear-gradient(135deg, rgba(147,51,234,.22), rgba(109,40,217,.14));
   border: 1px solid rgba(147,51,234,.38);
-  font-size: clamp(.55rem, 1.05vw, .82rem);
+  font-size: clamp(.6rem, 1.1vw, .9rem);
   font-weight: 700;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -358,7 +425,7 @@ body {
 }
 
 .q-cell .pts {
-  font-size: clamp(1rem, 2.2vw, 1.7rem);
+  font-size: clamp(1.2rem, 2.6vw, 2.1rem);
   font-weight: 800;
   background: linear-gradient(135deg, var(--text) 0%, var(--p300) 100%);
   -webkit-background-clip: text;
@@ -437,9 +504,9 @@ body {
 .modal-card {
   background: rgba(12, 0, 28, 0.96);
   border: 1px solid rgba(147,51,234,.42);
-  border-radius: 22px;
-  padding: 38px 44px 36px;
-  max-width: 720px;
+  border-radius: 24px;
+  padding: 52px 60px 48px;
+  max-width: 880px;
   width: 100%;
   text-align: center;
   box-shadow:
@@ -458,7 +525,7 @@ body {
 }
 
 #modal-category {
-  font-size: .78rem;
+  font-size: .88rem;
   font-weight: 700;
   letter-spacing: 2.5px;
   text-transform: uppercase;
@@ -468,14 +535,14 @@ body {
 .modal-sep { color: var(--text-faint); }
 
 #modal-points {
-  font-size: .85rem;
+  font-size: .95rem;
   font-weight: 800;
   color: var(--p400);
   letter-spacing: 1px;
 }
 
 #modal-question {
-  font-size: clamp(1.25rem, 3vw, 1.9rem);
+  font-size: clamp(1.4rem, 3.2vw, 2.3rem);
   font-weight: 700;
   line-height: 1.45;
   color: var(--text);
@@ -520,7 +587,7 @@ body {
 }
 
 #modal-status {
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   font-weight: 800;
   letter-spacing: .3px;
   min-height: 1.6em;
@@ -554,9 +621,9 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  padding: 11px 26px;
+  padding: 13px 32px;
   font-family: inherit;
-  font-size: .95rem;
+  font-size: 1.05rem;
   font-weight: 700;
   border: none;
   border-radius: 10px;

@@ -54,9 +54,42 @@ function joinGame() {
 socket.on('gameState', (state) => {
   myState = state;
   const me = state.players.find(p => p.id === state.myId);
-  if (me) amHost = me.isHost;
-  renderGame(state);
+  if (me) {
+    amHost = me.isHost;
+    // Keep reset-btn in sync after reconnect
+    document.getElementById('reset-btn').style.display =
+      (hasJoined && amHost) ? 'block' : 'none';
+  }
+  // Always refresh the join-screen player list (visible before joining)
+  renderJoinPlayerList(state);
+  if (hasJoined) renderGame(state);
 });
+
+// ── Join-screen: active player list ─────────────────────────────────────────
+function renderJoinPlayerList(state) {
+  const container = document.getElementById('join-players');
+  if (!container) return;
+  if (state.players.length === 0) { container.innerHTML = ''; return; }
+
+  container.innerHTML = `
+    <div class="jp-label">Bereits dabei — zum Wiederverbinden klicken</div>
+    <div class="jp-list">
+      ${state.players.map(p => `
+        <button class="jp-chip ${p.connected ? 'online' : 'offline'}"
+                data-name="${esc(p.name)}"
+                data-host="${p.isHost}"
+                onclick="rejoinAs(this)">
+          <span class="jp-dot"></span>
+          ${esc(p.name)}${p.isHost ? ' 👑' : ''}
+        </button>`).join('')}
+    </div>`;
+}
+
+function rejoinAs(btn) {
+  document.getElementById('player-name').value = btn.dataset.name;
+  document.getElementById('is-host').checked = btn.dataset.host === 'true';
+  document.getElementById('player-name').focus();
+}
 
 // ── Render ───────────────────────────────────────────────────────────────────
 function renderGame(state) {

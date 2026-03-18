@@ -73,6 +73,7 @@ function getStateForPlayer(playerId) {
     players: state.players.map(p => ({
       id: p.id,
       name: p.name,
+      connected: p.connected !== false,
       score: p.score,
       isHost: p.isHost,
     })),
@@ -110,15 +111,31 @@ io.on('connection', (socket) => {
   socket.emit('gameState', getStateForPlayer(socket.id));
 
   socket.on('join', ({ name, isHost }) => {
-    // Remove any existing entry (reconnect)
-    state.players = state.players.filter(p => p.id !== socket.id);
+    const trimmed = (name || 'Spieler').trim().slice(0, 24);
 
-    state.players.push({
-      id: socket.id,
-      name: (name || 'Spieler').trim().slice(0, 24),
-      score: 0,
-      isHost: !!isHost,
-    });
+    // Reconnect: find a disconnected player with the same name
+    const existing = state.players.find(p => p.name === trimmed && p.connected === false);
+
+    if (existing) {
+      const oldId = existing.id;
+      existing.id = socket.id;
+      existing.connected = true;
+      // Update any state references that held the old socket id
+      if (state.currentAnswererId === oldId) state.currentAnswererId = socket.id;
+      if (state.buzzedById === oldId) state.buzzedById = socket.id;
+      const wi = state.wrongAnswererIds.indexOf(oldId);
+      if (wi !== -1) state.wrongAnswererIds[wi] = socket.id;
+    } else {
+      // New player — remove any stale entry with this socket id first
+      state.players = state.players.filter(p => p.id !== socket.id);
+      state.players.push({
+        id: socket.id,
+        name: trimmed,
+        score: 0,
+        isHost: !!isHost,
+        connected: true,
+      });
+    }
     broadcastState();
   });
 
@@ -175,6 +192,14 @@ io.on('connection', (socket) => {
     if (!player?.isHost) return;
     if (state.phase !== 'question' || !state.activeQuestion) return;
 
+    const { categoryIndex, questionIndex } = state.activeQuestion;
+    const points = questions.categories[categoryIndex].questions[questionIndex].points;
+    const penalty = Math.floor(points / 2);
+
+    // Deduct half the question's points from the wrong answerer
+    const wrongPlayer = state.players.find(p => p.id === state.currentAnswererId);
+    if (wrongPlayer) wrongPlayer.score -= penalty;
+
     if (state.currentAnswererId && !state.wrongAnswererIds.includes(state.currentAnswererId)) {
       state.wrongAnswererIds.push(state.currentAnswererId);
     }
@@ -229,10 +254,10 @@ io.on('connection', (socket) => {
   });
 
   socket.on('disconnect', () => {
-    const wasPlayer = state.players.find(p => p.id === socket.id);
-    state.players = state.players.filter(p => p.id !== socket.id);
-
-    if (wasPlayer) {
+    const player = state.players.find(p => p.id === socket.id);
+    if (player) {
+      // Keep the player in state (so they can reconnect) but mark as disconnected
+      player.connected = false;
       const nonHost = getNonHostPlayers();
       if (nonHost.length > 0) {
         state.currentTurnIndex = state.currentTurnIndex % nonHost.length;
