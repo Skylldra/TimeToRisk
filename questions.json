@@ -76,63 +76,63 @@
       "name": "Board 2 — Doppelrunde",
       "categories": [
         {
-          "name": "Populärkultur",
+          "name": "Wer oder was",
           "questions": [
-            { "points": 200, "question": "Wie heißt der Zauberwürfel mit 3×3 Feldern?", "answer": "Rubik's Cube" },
-            { "points": 400, "question": "In welcher Stadt spielt die Serie 'Stranger Things'?", "answer": "Hawkins (Indiana)" },
-            { "points": 600, "question": "Wie viele Steine hat ein Standard-Dominoset (Doppel-6)?", "answer": "28" },
-            { "points": 800, "question": "Welches Videospiel hält den Rekord als meistverkauftes aller Zeiten?", "answer": "Minecraft" },
-            { "points": 1000, "question": "In welchem Jahr wurde das erste iPhone vorgestellt?", "answer": "2007" }
+            { "points": 200, "question": "Wer ist das?", "answer": "Christiano Ronaldo", "image": "Ronaldo.png" },
+            { "points": 400, "question": "Wer ist das?", "answer": "Albert Einstein", "image": "Einstein.png" },
+            { "points": 600, "question": "Was ist das?", "answer": "Axolotl", "image": "Axolotl.png" },
+            { "points": 800, "question": "Was ist das?", "answer": "Teleskop", "image": "Teleskop.png" },
+            { "points": 1000, "question": "Was ist das?", "answer": "Machu Picchu", "image": "MachuPicchu.png" }
           ]
         },
         {
-          "name": "Natur & Tiere",
+          "name": "Games",
           "questions": [
-            { "points": 200, "question": "Wie viele Herzen hat ein Oktopus?", "answer": "3" },
-            { "points": 400, "question": "Was ist das schwerste Landtier der Welt?", "answer": "Afrikanischer Elefant" },
-            { "points": 600, "question": "Wie nennt man junge Kängurus in ihrem Beutel?", "answer": "Joey" },
-            { "points": 800, "question": "Welcher Baum kann über 5.000 Jahre alt werden?", "answer": "Grannenföhre (Bristlecone Pine)" },
-            { "points": 1000, "question": "Wie viele Augen hat eine Spinne typischerweise?", "answer": "8" }
+            { "points": 200, "question": "Welches Spiel ist das?", "answer": "Amung Us", "image": "AmongUs.png" },
+            { "points": 400, "question": "Welches Spiel ist das?", "answer": "Mario Kart", "image": "MarioKart.png" },
+            { "points": 600, "question": "Welches Spiel ist das?", "answer": "GTA V", "image": "GTA.png" },
+            { "points": 800, "question": "Welches Spiel ist das?", "answer": "Stardew Valley", "image": "StardewValley.png" },
+            { "points": 1000, "question": "Welches Spiel ist das?", "answer": "Elden Ring", "image": "EldenRing.png" }
           ]
         },
         {
-          "name": "Technik & Internet",
+          "name": "Brands",
           "questions": [
-            { "points": 200, "question": "Wofür steht die Abkürzung 'URL'?", "answer": "Uniform Resource Locator" },
-            { "points": 400, "question": "In welchem Land wurde IKEA gegründet?", "answer": "Schweden" },
-            { "points": 600, "question": "Wie viele Bits hat ein Byte?", "answer": "8" },
-            { "points": 800, "question": "Wer gründete Tesla gemeinsam mit Elon Musk?", "answer": "Martin Eberhard und Marc Tarpenning" },
-            { "points": 1000, "question": "In welchem Jahr wurde das World Wide Web öffentlich zugänglich?", "answer": "1991" }
-          ]
-        },
-        {
-          "name": "Essen & Trinken",
-          "questions": [
-            { "points": 200, "question": "Aus welchem Land stammt Sushi?", "answer": "Japan" },
-            { "points": 400, "question": "Wie heißt der Käse mit blauen Schimmeladern?", "answer": "Roquefort / Gorgonzola / Blauschimmelkäse" },
-            { "points": 600, "question": "Was ist die Hauptzutat von Guacamole?", "answer": "Avocado" },
-            { "points": 800, "question": "Aus welcher Pflanze wird Schokolade hergestellt?", "answer": "Kakaobaum (Theobroma cacao)" },
-            { "points": 1000, "question": "Wie viele Liter fasst ein Magnum (Weinflasche)?", "answer": "1,5 Liter" }
+            { "points": 200, "question": "Just do it.", "answer": "Nike" },
+            { "points": 400, "question": "Ich liebe es.", "answer": "McDonald's" },
+            { "points": 600, "question": "Geiz ist geil.", "answer": "Saturn" },
+            { "points": 800, "question": "Think different.", "answer": "Apple" },
+            { "points": 1000, "question": "Vorsprung durch Technik.", "answer": "Audi" }
           ]
         },
         {
           "name": "Sprichwörter",
           "questions": [
-            { "points": 200, "question": "Vervollständige: 'Wer zuletzt lacht, …'", "answer": "… lacht am besten" },
-            { "points": 400, "question": "Vervollständige: 'Der Apfel fällt nicht weit …'", "answer": "… vom Stamm" },
-            { "points": 600, "question": "Vervollständige: 'Viele Köche …'", "answer": "… verderben den Brei" },
-            { "points": 800, "question": "Vervollständige: 'Wer den Pfennig nicht ehrt, …'", "answer": "… ist des Talers nicht wert" },
-            { "points": 1000, "question": "Vervollständige: 'Morgenstund hat …'", "answer": "… Gold im Mund" }
+            { "points": 200, "question": "Aller Anfang ist ...", "answer": "schwer" },
+            { "points": 400, "question": "Wer rastet, der ...", "answer": "rostet" },
+            { "points": 600, "question": "Hochmut kommt ...", "answer": "vor dem Fall" },
+            { "points": 800, "question": "Wer den Pfennig nicht ehrt, ...", "answer": "ist des Talers nicht wert" },
+            { "points": 1000, "question": "Viele Köche ...", "answer": "verderben die Suppe" }
           ]
         },
         {
-          "name": "Körper & Gesundheit",
+          "name": "Internet",
           "questions": [
-            { "points": 200, "question": "Wie viele Zähne hat ein gesunder Erwachsener (ohne Weisheitszähne)?", "answer": "28" },
-            { "points": 400, "question": "Wie heißt der größte Knochen im menschlichen Körper?", "answer": "Oberschenkelknochen (Femur)" },
-            { "points": 600, "question": "Wie viele Liter Blut hat ein durchschnittlicher Mensch?", "answer": "ca. 5–6 Liter" },
-            { "points": 800, "question": "Welches Organ produziert Insulin?", "answer": "Bauchspeicheldrüse (Pankreas)" },
-            { "points": 1000, "question": "Wie viele Knochen hat ein neugeborenes Baby?", "answer": "ca. 300 (Erwachsener: 206)" }
+            { "points": 200, "question": "Wie nennt man ein Bild oder Video, das sich im Internet schnell verbreitet und oft humorvoll ist?", "answer": "Ein Meme" },
+            { "points": 400, "question": "Wie nennt man es, wenn jemand im Internet absichtlich provoziert, um Streit auszulösen?", "answer": "Trolling/Ragebaiten" },
+            { "points": 600, "question": "Welche Plattform wurde ursprünglich nur für kurze Nachrichten mit maximal 140 Zeichen bekannt?", "answer": "Twitter" },
+            { "points": 800, "question": "Welche Website ist bekannt dafür, dass Nutzer dort Fragen stellen und von anderen beantworten lassen (oft mit Upvotes)?", "answer": "Reddit" },
+            { "points": 1000, "question": "Wie nennt man den ersten April-Scherz von Google, bei dem angeblich Gerüche über den Bildschirm übertragen werden konnten?", "answer": "Google Nose" }
+          ]
+        },
+        {
+          "name": "π mal Daumen",
+          "questions": [
+            { "points": 200, "question": "Wie viele Knochen hat ein menschlicher Fuß?", "answer": "26 (akzeptiere: 24 – 28 → ±7,7%)" },
+            { "points": 400, "question": "Wie viele Tasten hat ein klassisches Klavier?", "answer": "88 (akzeptiere: 84 – 92 → ±4,5%)" },
+            { "points": 600, "question": "Wie viele Liter Blut hat ein erwachsener Mensch ungefähr?", "answer": "ca. 5 Liter (akzeptiere: 4,7 – 5,3 → ±6%)" },
+            { "points": 800, "question": "Wie viele Haare hat ein Mensch durchschnittlich auf dem Kopf?", "answer": "ca. 100.000 (akzeptiere: 90.000 – 110.000 → ±10%)" },
+            { "points": 1000, "question": "Wie viele Kilometer ist der Umfang der Erde am Äquator?", "answer": "ca. 40.075 km (akzeptiere: 38.000 – 42.000 km → ±5%)" }
           ]
         }
       ]
