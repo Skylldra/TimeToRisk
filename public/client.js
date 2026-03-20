@@ -4,6 +4,10 @@ let myState    = null;
 let amHost     = false;
 let hasJoined  = false;
 
+let prevScores     = {};   // playerId → last known score
+let modalWasOpen   = false;
+let prevBuzzedById = null;
+
 // ── Floating background emojis ───────────────────────────────────────────────
 const QUIZ_EMOJIS = ['🧠','💡','❓','🎯','🏆','⭐','🔍','📚','🎲','🤔','✨','🌟','💫','🎪','🏅'];
 
@@ -108,16 +112,34 @@ function renderGame(state) {
 
 function renderScoreBar(state) {
   const bar = document.getElementById('score-bar');
-  bar.innerHTML = state.players
-    .filter(p => !p.isHost)
-    .map(p => {
-      const active = p.id === state.currentPlayerId ? 'active-turn' : '';
-      return `
-        <div class="player-score ${active}">
-          <div class="ps-name">${esc(p.name)}</div>
-          <div class="ps-score">${p.score}</div>
-        </div>`;
-    }).join('');
+  const players = state.players.filter(p => !p.isHost);
+
+  bar.innerHTML = players.map(p => {
+    const active = p.id === state.currentPlayerId ? 'active-turn' : '';
+    return `
+      <div class="player-score ${active}" data-pid="${esc(p.id)}">
+        <div class="ps-name">${esc(p.name)}</div>
+        <div class="ps-score">${p.score}</div>
+      </div>`;
+  }).join('');
+
+  // Score change animations
+  players.forEach(p => {
+    if (prevScores[p.id] !== undefined && prevScores[p.id] !== p.score) {
+      const card    = bar.querySelector(`[data-pid="${p.id}"]`);
+      const numEl   = card?.querySelector('.ps-score');
+      if (!card) return;
+
+      const cls = p.score > prevScores[p.id] ? 'flash-up' : 'flash-down';
+      card.classList.add(cls);
+      numEl?.classList.add('popping');
+      setTimeout(() => {
+        card.classList.remove(cls);
+        numEl?.classList.remove('popping');
+      }, 800);
+    }
+    prevScores[p.id] = p.score;
+  });
 }
 
 function renderTurnIndicator(state) {
@@ -190,12 +212,34 @@ function renderBoard(state) {
 
 function renderModal(state) {
   const modal = document.getElementById('question-modal');
+  const card  = modal.querySelector('.modal-card');
 
   if (state.phase === 'board' || !state.activeQuestion) {
     modal.style.display = 'none';
+    modalWasOpen   = false;
+    prevBuzzedById = null;
     return;
   }
+
   modal.style.display = 'flex';
+
+  // Modal open animation — only on first open, not on every state update
+  if (!modalWasOpen) {
+    card.classList.remove('is-entering');
+    void card.offsetWidth;
+    card.classList.add('is-entering');
+    setTimeout(() => card.classList.remove('is-entering'), 300);
+    modalWasOpen = true;
+  }
+
+  // Buzz flash — only when buzzedById newly appears
+  if (state.buzzedById && state.buzzedById !== prevBuzzedById) {
+    card.classList.remove('buzz-flash');
+    void card.offsetWidth;
+    card.classList.add('buzz-flash');
+    setTimeout(() => card.classList.remove('buzz-flash'), 700);
+  }
+  prevBuzzedById = state.buzzedById || null;
 
   const q = state.activeQuestion;
   document.getElementById('modal-category').textContent = q.categoryName.toUpperCase();
@@ -278,10 +322,13 @@ function renderModal(state) {
 
 // ── Full reset (everyone back to join screen) ────────────────────────────────
 socket.on('fullReset', () => {
-  hasJoined = false;
-  amHost    = false;
-  myState   = null;
-  pmPlayerId = null;
+  hasJoined      = false;
+  amHost         = false;
+  myState        = null;
+  pmPlayerId     = null;
+  prevScores     = {};
+  modalWasOpen   = false;
+  prevBuzzedById = null;
 
   document.getElementById('board').classList.remove('game-over');
   document.getElementById('game-screen').style.display    = 'none';
