@@ -162,7 +162,7 @@ function renderScoreBar(state) {
           numEl?.classList.remove('popping');
         }, 800);
       });
-    }, 50);
+    }, 350);
   }
 }
 
@@ -505,10 +505,13 @@ function renderGameOver(state) {
 
 // ── X2 animation ─────────────────────────────────────────────────────────────
 socket.on('nextBoardStarted', () => {
-  const el = document.querySelector('.x2-content');
+  const el      = document.querySelector('.x2-content');
+  const overlay = document.getElementById('x2-overlay');
   el.classList.remove('playing');
+  overlay.classList.remove('playing');
   void el.offsetWidth; // force reflow so animation restarts
   el.classList.add('playing');
+  overlay.classList.add('playing');
 });
 
 // ── Image fullscreen ─────────────────────────────────────────────────────────

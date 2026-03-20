@@ -1059,49 +1059,113 @@ body {
   justify-content: center;
   pointer-events: none;
   z-index: 800;
+  background: transparent;
+}
+
+#x2-overlay.playing {
+  animation: x2Backdrop 3.4s cubic-bezier(.4,0,.2,1) forwards;
+}
+
+@keyframes x2Backdrop {
+  0%   { background: transparent; }
+  10%  { background: rgba(7,0,15,.93); }
+  72%  { background: rgba(7,0,15,.93); }
+  100% { background: transparent; }
 }
 
 .x2-content {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2px;
+  gap: 6px;
   opacity: 0;
+  position: relative;
 }
 
 .x2-content.playing {
-  animation: x2Anim 2.6s cubic-bezier(.4,0,.2,1) forwards;
+  animation: x2Anim 3.4s cubic-bezier(.4,0,.2,1) forwards;
+}
+
+/* Glowing burst ring behind the text */
+.x2-ring {
+  position: absolute;
+  width: clamp(240px, 45vw, 520px);
+  height: clamp(240px, 45vw, 520px);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(245,158,11,.18) 0%, rgba(245,158,11,.04) 55%, transparent 72%);
+  border: 2px solid rgba(251,191,36,.22);
+  box-shadow:
+    0 0 60px rgba(245,158,11,.3),
+    0 0 120px rgba(245,158,11,.15),
+    inset 0 0 60px rgba(245,158,11,.08);
+  opacity: 0;
+  transform: scale(0.4);
+}
+
+.x2-content.playing .x2-ring {
+  animation: x2Ring 3.4s cubic-bezier(.4,0,.2,1) forwards;
+}
+
+@keyframes x2Ring {
+  0%   { opacity: 0;   transform: scale(.4); }
+  14%  { opacity: 1;   transform: scale(1.05); }
+  28%  { opacity: .8;  transform: scale(.96); }
+  70%  { opacity: .7;  transform: scale(1); }
+  88%  { opacity: 0;   transform: scale(1.18); }
+  100% { opacity: 0;   transform: scale(1.3); }
 }
 
 .x2-text {
-  font-size: clamp(5.5rem, 20vw, 12rem);
+  font-size: clamp(6rem, 22vw, 14rem);
   font-weight: 900;
-  letter-spacing: -3px;
+  letter-spacing: -4px;
   line-height: 1;
-  background: linear-gradient(160deg, #fef3c7 0%, #fbbf24 35%, #f59e0b 65%, #d97706 100%);
+  position: relative;
+  background: linear-gradient(160deg, #fff7e6 0%, #fde68a 20%, #fbbf24 50%, #f59e0b 75%, #d97706 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  filter: drop-shadow(0 0 40px rgba(251,191,36,.75)) drop-shadow(0 0 80px rgba(245,158,11,.4));
+  filter:
+    drop-shadow(0 0 24px rgba(251,191,36,.9))
+    drop-shadow(0 0 60px rgba(245,158,11,.6))
+    drop-shadow(0 0 120px rgba(245,158,11,.35));
 }
 
 .x2-sub {
-  font-size: clamp(1rem, 3.5vw, 2rem);
-  font-weight: 800;
-  letter-spacing: 10px;
+  font-size: clamp(.85rem, 3vw, 1.6rem);
+  font-weight: 700;
+  letter-spacing: clamp(10px, 3vw, 24px);
   text-transform: uppercase;
-  color: #fcd34d;
-  text-shadow: 0 0 24px rgba(251,191,36,.8);
+  color: #fde68a;
+  text-shadow:
+    0 0 16px rgba(251,191,36,1),
+    0 0 40px rgba(245,158,11,.7);
+  opacity: 0;
+  position: relative;
+}
+
+.x2-content.playing .x2-sub {
+  animation: x2Sub 3.4s cubic-bezier(.4,0,.2,1) forwards;
+}
+
+@keyframes x2Sub {
+  0%   { opacity: 0; transform: translateY(12px) scale(.9); letter-spacing: 2px; }
+  22%  { opacity: 0; transform: translateY(12px) scale(.9); letter-spacing: 2px; }
+  38%  { opacity: 1; transform: translateY(0)    scale(1);  letter-spacing: clamp(10px, 3vw, 24px); }
+  72%  { opacity: 1; }
+  88%  { opacity: 0; }
+  100% { opacity: 0; }
 }
 
 @keyframes x2Anim {
-  0%   { opacity: 0;   transform: scale(.35) translateY(80px);  }
-  16%  { opacity: 1;   transform: scale(1.12) translateY(-8px); }
-  26%  { opacity: 1;   transform: scale(.97) translateY(0);     }
-  42%  { opacity: 1;   transform: scale(1.04) translateY(0);    }
-  58%  { opacity: 1;   transform: scale(1)   translateY(0);     }
-  78%  { opacity: 1;   transform: scale(1)   translateY(0);     }
-  100% { opacity: 0;   transform: scale(.88) translateY(-55px); }
+  0%   { opacity: 0; transform: scale(.2)  translateY(60px); }
+  12%  { opacity: 1; transform: scale(1.1) translateY(-6px); }
+  20%  { opacity: 1; transform: scale(.96) translateY(0);    }
+  32%  { opacity: 1; transform: scale(1.03) translateY(0);   }
+  46%  { opacity: 1; transform: scale(1)   translateY(0);    }
+  72%  { opacity: 1; transform: scale(1)   translateY(0);    }
+  88%  { opacity: 0; transform: scale(.9)  translateY(-40px); }
+  100% { opacity: 0; transform: scale(.85) translateY(-60px); }
 }
 
 /* Fullscreen lightbox */
