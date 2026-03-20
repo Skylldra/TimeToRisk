@@ -1086,6 +1086,13 @@ body {
   animation: x2Anim 3.4s cubic-bezier(.4,0,.2,1) forwards;
 }
 
+.x2-main {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 /* Glowing burst ring behind the text */
 .x2-ring {
   position: absolute;
@@ -1102,7 +1109,7 @@ body {
   transform: scale(0.4);
 }
 
-.x2-content.playing .x2-ring {
+.x2-content.playing .x2-main .x2-ring {
   animation: x2Ring 3.4s cubic-bezier(.4,0,.2,1) forwards;
 }
 
