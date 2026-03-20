@@ -186,9 +186,10 @@ io.on('connection', (socket) => {
     const points = cats[categoryIndex].questions[questionIndex].points;
     const answererId = state.currentAnswererId;
 
-    // Award points
+    // Award points (half if answered after a buzz)
+    const awarded = state.buzzedById ? Math.floor(points / 2) : points;
     const answerer = state.players.find(p => p.id === answererId);
-    if (answerer) answerer.score += points;
+    if (answerer) answerer.score += awarded;
 
     // Advance to the player after whoever owned this question's turn
     const nonHost = getNonHostPlayers();
