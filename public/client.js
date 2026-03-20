@@ -4,9 +4,10 @@ let myState    = null;
 let amHost     = false;
 let hasJoined  = false;
 
-let prevScores     = {};   // playerId → last known score
-let modalWasOpen   = false;
-let prevBuzzedById = null;
+let prevScores          = {};   // playerId → last known score
+let pendingScoreChanges = {};   // playerId → { from, to } — buffered while modal is open
+let modalWasOpen        = false;
+let prevBuzzedById      = null;
 
 // ── Floating background emojis ───────────────────────────────────────────────
 const QUIZ_EMOJIS = ['🧠','💡','❓','🎯','🏆','⭐','🔍','📚','🎲','🤔','✨','🌟','💫','🎪','🏅'];
@@ -123,23 +124,59 @@ function renderScoreBar(state) {
       </div>`;
   }).join('');
 
-  // Score change animations
+  // Modal is considered open whenever there is an active question
+  const modalOpen = !!state.activeQuestion;
+
+  // Detect score changes — buffer while modal is open, fire immediately otherwise
   players.forEach(p => {
     if (prevScores[p.id] !== undefined && prevScores[p.id] !== p.score) {
-      const card    = bar.querySelector(`[data-pid="${p.id}"]`);
-      const numEl   = card?.querySelector('.ps-score');
-      if (!card) return;
-
-      const cls = p.score > prevScores[p.id] ? 'flash-up' : 'flash-down';
-      card.classList.add(cls);
-      numEl?.classList.add('popping');
-      setTimeout(() => {
-        card.classList.remove(cls);
-        numEl?.classList.remove('popping');
-      }, 800);
+      if (modalOpen) {
+        // Buffer: preserve the earliest "from" value in case scores change multiple times
+        if (!pendingScoreChanges[p.id]) {
+          pendingScoreChanges[p.id] = { from: prevScores[p.id], to: p.score };
+        } else {
+          pendingScoreChanges[p.id].to = p.score;
+        }
+      } else {
+        fireScoreAnimation(bar, p.id, p.score > prevScores[p.id]);
+      }
     }
     prevScores[p.id] = p.score;
   });
+
+  // Modal just closed — fire all buffered animations
+  if (!modalOpen && Object.keys(pendingScoreChanges).length > 0) {
+    const snapshot = pendingScoreChanges;
+    pendingScoreChanges = {};
+    setTimeout(() => {
+      Object.entries(snapshot).forEach(([pid, { from, to }]) => {
+        if (from === to) return;
+        const card  = bar.querySelector(`[data-pid="${pid}"]`);
+        const numEl = card?.querySelector('.ps-score');
+        if (!card) return;
+        const cls = to > from ? 'flash-up' : 'flash-down';
+        card.classList.add(cls);
+        numEl?.classList.add('popping');
+        setTimeout(() => {
+          card.classList.remove(cls);
+          numEl?.classList.remove('popping');
+        }, 800);
+      });
+    }, 50);
+  }
+}
+
+function fireScoreAnimation(bar, pid, isUp) {
+  const card  = bar.querySelector(`[data-pid="${pid}"]`);
+  const numEl = card?.querySelector('.ps-score');
+  if (!card) return;
+  const cls = isUp ? 'flash-up' : 'flash-down';
+  card.classList.add(cls);
+  numEl?.classList.add('popping');
+  setTimeout(() => {
+    card.classList.remove(cls);
+    numEl?.classList.remove('popping');
+  }, 800);
 }
 
 function renderTurnIndicator(state) {
@@ -322,13 +359,14 @@ function renderModal(state) {
 
 // ── Full reset (everyone back to join screen) ────────────────────────────────
 socket.on('fullReset', () => {
-  hasJoined      = false;
-  amHost         = false;
-  myState        = null;
-  pmPlayerId     = null;
-  prevScores     = {};
-  modalWasOpen   = false;
-  prevBuzzedById = null;
+  hasJoined           = false;
+  amHost              = false;
+  myState             = null;
+  pmPlayerId          = null;
+  prevScores          = {};
+  pendingScoreChanges = {};
+  modalWasOpen        = false;
+  prevBuzzedById      = null;
 
   document.getElementById('board').classList.remove('game-over');
   document.getElementById('game-screen').style.display    = 'none';
