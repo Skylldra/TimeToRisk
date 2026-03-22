@@ -63,10 +63,10 @@
           "name": "Wortsalat",
           "questions": [
             { "points": 100, "question": "Zkree", "answer": "Kerze" },
-            { "points": 200, "question": "Bnaean", "answer": "Banane" },
-            { "points": 300, "question": "Slehesüsc", "answer": "Schlüssel" },
-            { "points": 400, "question": "Gehmnaisd", "answer": "Geheimnis" },
-            { "points": 500, "question": "Rknaenhwga", "answer": "Krankenwagen" }
+            { "points": 200, "question": "Kmonofir", "answer": "Mikrofon" },
+            { "points": 300, "question": "Slehsüsc", "answer": "Schlüssel" },
+            { "points": 400, "question": "Tadelsalun", "answer": "Nudelsalat" },
+            { "points": 500, "question": "Bennelefi", "answer": "Elfenbein" }
           ]
         }
       ]
@@ -110,9 +110,9 @@
           "questions": [
             { "points": 200, "question": "Aller Anfang ist ...", "answer": "schwer" },
             { "points": 400, "question": "Wer rastet, der ...", "answer": "rostet" },
-            { "points": 600, "question": "Hochmut kommt ...", "answer": "vor dem Fall" },
-            { "points": 800, "question": "Wer den Pfennig nicht ehrt, ...", "answer": "ist des Talers nicht wert" },
-            { "points": 1000, "question": "Viele Köche ...", "answer": "verderben die Suppe" }
+            { "points": 600, "question": "Da lachen die ...", "answer": "Hühner" },
+            { "points": 800, "question": "Hinten kackt die ...", "answer": "Ente" },
+            { "points": 1000, "question": "Blut und Wasser ...", "answer": "schwitzen" }
           ]
         },
         {
@@ -121,7 +121,7 @@
             { "points": 200, "question": "Wie nennt man ein Bild oder Video, das sich im Internet schnell verbreitet und oft humorvoll ist?", "answer": "Ein Meme" },
             { "points": 400, "question": "Wie nennt man es, wenn jemand im Internet absichtlich provoziert, um Streit auszulösen?", "answer": "Trolling/Ragebaiten" },
             { "points": 600, "question": "Welche Plattform wurde ursprünglich nur für kurze Nachrichten mit maximal 140 Zeichen bekannt?", "answer": "Twitter" },
-            { "points": 800, "question": "Welche Website ist bekannt dafür, dass Nutzer dort Fragen stellen und von anderen beantworten lassen (oft mit Upvotes)?", "answer": "Reddit" },
+            { "points": 800, "question": "Welcher YouTube Kanal knackte als erstes die 1 Millionen Abonennten?", "answer": "FRED" },
             { "points": 1000, "question": "Wie nennt man den ersten April-Scherz von Google, bei dem angeblich Gerüche über den Bildschirm übertragen werden konnten?", "answer": "Google Nose" }
           ]
         },
