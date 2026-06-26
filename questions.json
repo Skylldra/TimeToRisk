@@ -12,61 +12,61 @@
         {
           "name": "Über den Daumen",
           "questions": [
-            { "points": 100, "question": "Schätzfrage: Wie viele Sekunden hat ein ganzer Tag?", "answer": "86.400 Sekunden (24 × 60 × 60)" },
-            { "points": 200, "question": "Schätzfrage: Wie viele Sterne kann ein Mensch in einer klaren, dunklen Nacht mit bloßem Auge ungefähr sehen?", "answer": "Ca. 2.000–3.000 (von einem Standort aus, ohne Lichtverschmutzung)" },
-            { "points": 300, "question": "Schätzfrage: Wie viele verschiedene Sprachen werden weltweit ungefähr gesprochen?", "answer": "Rund 7.000" },
-            { "points": 400, "question": "Schätzfrage: Wie oft blinzelt ein Mensch ungefähr an einem ganzen Tag?", "answer": "Etwa 15.000–20.000 Mal" },
-            { "points": 500, "question": "Schätzfrage: Wenn man alle Ameisen der Welt durch die Zahl der Menschen teilt – wie viele Ameisen kommen rechnerisch auf jeden einzelnen Menschen?", "answer": "Ca. 2,5 Millionen Ameisen pro Mensch (rund 20 Billiarden Ameisen weltweit, geteilt durch ~8 Milliarden Menschen)" }
+            { "points": 100, "question": "Mal schätzen: Wie viele Sekunden hat eigentlich ein ganzer Tag?", "answer": "86.400 Sekunden, also 24 mal 60 mal 60" },
+            { "points": 200, "question": "Mal schätzen: Wie viele Sterne sieht man in einer klaren, dunklen Nacht ungefähr mit bloßem Auge?", "answer": "So um die 2.000 bis 3.000, wenn man an einem dunklen Fleck ohne Lichtverschmutzung steht" },
+            { "points": 300, "question": "Mal schätzen: Wie viele verschiedene Sprachen werden auf der Welt so gesprochen?", "answer": "Ungefähr 7.000" },
+            { "points": 400, "question": "Mal schätzen: Wie oft blinzelt man an einem ganzen Tag ungefähr?", "answer": "So 15.000 bis 20.000 Mal" },
+            { "points": 500, "question": "Mal schätzen: Wenn man alle Ameisen der Welt durch die Zahl der Menschen teilt, wie viele Ameisen kommen dann auf jeden Einzelnen?", "answer": "Etwa 2,5 Millionen Ameisen pro Person. Es gibt nämlich grob 20 Billiarden Ameisen und nur rund 8 Milliarden Menschen" }
           ]
         },
         {
           "name": "Fellknäuel-Fakten",
           "questions": [
             { "points": 100, "question": "Welches ist das einzige Säugetier, das fliegen kann?", "answer": "Die Fledermaus" },
-            { "points": 200, "question": "Welches große Säugetier kann als einziges überhaupt nicht springen?", "answer": "Der Elefant – er hat zu jedem Zeitpunkt immer mindestens einen Fuß am Boden" },
-            { "points": 300, "question": "Welches Tier hat den höchsten Blutdruck im gesamten Tierreich – und warum braucht es ihn?", "answer": "Die Giraffe – das Herz muss das Blut durch den langen Hals bis hoch ins Gehirn pumpen (rund doppelt so hoher Blutdruck wie beim Menschen)" },
-            { "points": 400, "question": "Warum stehen Flamingos so oft nur auf einem Bein?", "answer": "Es spart Körperwärme (weniger Fläche im kalten Wasser); zudem lässt sich das Standbein fast ohne Muskelkraft 'einrasten'" },
-            { "points": 500, "question": "Welcher Hai kann über 400 Jahre alt werden und gilt damit als ältestes bekanntes Wirbeltier?", "answer": "Der Grönlandhai" }
+            { "points": 200, "question": "Welches große Säugetier kann als Einziges überhaupt nicht springen?", "answer": "Der Elefant. Er hat immer mindestens einen Fuß auf dem Boden" },
+            { "points": 300, "question": "Welches Tier hat den höchsten Blutdruck von allen, und warum braucht es ihn?", "answer": "Die Giraffe. Ihr Herz muss das Blut den langen Hals hoch bis ins Gehirn pumpen, der Blutdruck ist dabei fast doppelt so hoch wie beim Menschen" },
+            { "points": 400, "question": "Warum stehen Flamingos eigentlich so oft nur auf einem Bein?", "answer": "Das spart Körperwärme, weil weniger Fläche im kalten Wasser hängt. Außerdem rastet das Standbein fast ohne Muskelkraft ein" },
+            { "points": 500, "question": "Welcher Hai kann über 400 Jahre alt werden und ist damit das älteste bekannte Wirbeltier?", "answer": "Der Grönlandhai" }
           ]
         },
         {
           "name": "Lampe an!",
           "questions": [
-            { "points": 100, "question": "Warum müssen wir niesen?", "answer": "Ein Reflex: Bei Reizung der Nasenschleimhaut schleudert der Körper Fremdkörper und Reizstoffe mit hohem Druck heraus" },
-            { "points": 200, "question": "Warum tränen die Augen beim Zwiebelschneiden?", "answer": "Die Zwiebel setzt ein schwefelhaltiges Gas frei, das mit der Tränenflüssigkeit eine milde Säure bildet – die Augen spülen sie mit Tränen weg" },
-            { "points": 300, "question": "Warum wird einem schwindelig, wenn man sich schnell im Kreis dreht und dann abrupt stehen bleibt?", "answer": "Die Flüssigkeit im Gleichgewichtsorgan des Innenohrs dreht sich noch weiter – das Gehirn glaubt, man bewege sich noch" },
-            { "points": 400, "question": "Warum hat man bei Verliebtheit 'Schmetterlinge im Bauch'?", "answer": "Stresshormone wie Adrenalin drosseln kurzzeitig die Durchblutung im Verdauungstrakt – das fühlt sich als Kribbeln an" },
-            { "points": 500, "question": "Warum hört man 'das Meer', wenn man eine große Muschel ans Ohr hält?", "answer": "Es ist nicht das Meer: Die Muschel fängt Umgebungsgeräusche (und das Rauschen des eigenen Blutflusses) ein und verstärkt bestimmte Frequenzen durch Resonanz" }
+            { "points": 100, "question": "Warum müssen wir eigentlich niesen?", "answer": "Das ist ein Reflex. Wenn die Nasenschleimhaut gereizt wird, pustet der Körper Fremdkörper und Reizstoffe mit ordentlich Druck wieder raus" },
+            { "points": 200, "question": "Warum tränen einem beim Zwiebelschneiden die Augen?", "answer": "Die Zwiebel gibt ein schwefelhaltiges Gas ab, das mit der Tränenflüssigkeit eine milde Säure bildet. Die Augen spülen die dann mit Tränen weg" },
+            { "points": 300, "question": "Warum wird einem schwindelig, wenn man sich schnell im Kreis dreht und dann plötzlich stehen bleibt?", "answer": "Die Flüssigkeit im Gleichgewichtsorgan im Innenohr dreht sich noch weiter, und das Gehirn denkt deshalb, man würde sich immer noch bewegen" },
+            { "points": 400, "question": "Warum hat man eigentlich Schmetterlinge im Bauch, wenn man verliebt ist?", "answer": "Stresshormone wie Adrenalin drosseln kurz die Durchblutung im Bauch, und das fühlt sich dann wie ein Kribbeln an" },
+            { "points": 500, "question": "Warum hört man das Meer, wenn man sich eine große Muschel ans Ohr hält?", "answer": "Das ist gar nicht das Meer. Die Muschel fängt die Geräusche um einen herum ein, dazu das Rauschen vom eigenen Blut, und verstärkt durch Resonanz bestimmte Töne" }
           ]
         },
         {
           "name": "Knobel-Ecke",
           "questions": [
             { "points": 100, "question": "Was hat einen Hals, aber keinen Kopf?", "answer": "Eine Flasche" },
-            { "points": 200, "question": "Was kannst du mit deiner rechten Hand fassen, aber niemals mit deiner linken?", "answer": "Deinen linken Ellbogen" },
-            { "points": 300, "question": "Was geht immer hoch und runter, bleibt dabei aber stets am selben Ort?", "answer": "Eine Treppe" },
-            { "points": 400, "question": "Zwei Mütter und zwei Töchter gehen angeln und fangen genau 3 Fische – trotzdem bekommt jede einen ganzen. Wie geht das?", "answer": "Es sind nur drei Personen: Großmutter, Mutter und Tochter. Die Mutter ist gleichzeitig Tochter und Mutter" },
-            { "points": 500, "question": "Ein Mann betrachtet ein Foto und sagt: 'Brüder und Schwestern habe ich keine, aber der Vater dieses Mannes ist meines Vaters Sohn.' Wen zeigt das Foto?", "answer": "Seinen eigenen Sohn" }
+            { "points": 200, "question": "Was kannst du mit deiner rechten Hand anfassen, aber niemals mit deiner linken?", "answer": "Deinen linken Ellbogen" },
+            { "points": 300, "question": "Was geht ständig hoch und runter und bleibt trotzdem immer am selben Fleck?", "answer": "Eine Treppe" },
+            { "points": 400, "question": "Zwei Mütter und zwei Töchter gehen angeln und fangen genau 3 Fische, trotzdem kriegt jede einen ganzen. Wie geht das?", "answer": "Es sind nur drei Leute: Oma, Mutter und Tochter. Die Mutter ist ja gleichzeitig Tochter und Mutter" },
+            { "points": 500, "question": "Ein Mann schaut sich ein Foto an und sagt: 'Brüder und Schwestern hab ich keine, aber der Vater dieses Mannes ist meines Vaters Sohn.' Wer ist auf dem Foto?", "answer": "Sein eigener Sohn" }
           ]
         },
         {
           "name": "Sprachsalat",
           "questions": [
-            { "points": 100, "question": "Welches kurze Wort wird in fast jedem Land der Welt verstanden und gilt als eines der bekanntesten Wörter überhaupt?", "answer": "'OK'" },
-            { "points": 200, "question": "Woher kommt der Ausdruck 'blaumachen' (also nicht zur Arbeit erscheinen)?", "answer": "Vom 'Blauen Montag' der Stofffärber: Frisch gefärbter Stoff musste an der Luft hängen und blau oxidieren – an dem Tag konnte nicht gearbeitet werden" },
-            { "points": 300, "question": "Woher stammt die Redewendung 'etwas auf die lange Bank schieben'?", "answer": "Von alten Gerichten: Akten lagen in langen Truhen-Bänken; unerledigte Fälle wurden nach hinten geschoben – also aufgeschoben" },
-            { "points": 400, "question": "Was bedeutete das Wort 'Hipster' ursprünglich in den 1940er-Jahren?", "answer": "Einen Fan der Jazz- und Bebop-Szene, der 'hip' war – also eingeweiht und angesagt" },
-            { "points": 500, "question": "Das längste je in einem echten deutschen Gesetz verwendete Wort hatte 63 Buchstaben und regelte die Etikettierung von Rindfleisch. Wie lautete es ungefähr?", "answer": "'Rindfleischetikettierungsüberwachungsaufgabenübertragungsgesetz' (2013 abgeschafft)" }
+            { "points": 100, "question": "Welches kurze Wort versteht man in fast jedem Land der Welt und gilt als eins der bekanntesten überhaupt?", "answer": "'OK'" },
+            { "points": 200, "question": "Wo kommt eigentlich der Ausdruck blaumachen her, also nicht zur Arbeit zu gehen?", "answer": "Vom Blauen Montag der Stofffärber. Frisch gefärbter Stoff musste an der Luft hängen und blau werden, und an dem Tag konnte man eben nicht arbeiten" },
+            { "points": 300, "question": "Wo kommt die Redewendung etwas auf die lange Bank schieben her?", "answer": "Von früheren Gerichten. Die Akten lagen in langen Truhenbänken, und Fälle, die liegen blieben, wurden nach hinten geschoben, also aufgeschoben" },
+            { "points": 400, "question": "Was hat das Wort Hipster in den 1940ern ursprünglich mal bedeutet?", "answer": "Einen Fan der Jazz- und Bebop-Szene, der hip war, also voll im Thema und angesagt" },
+            { "points": 500, "question": "Das längste Wort, das je in einem echten deutschen Gesetz stand, hatte 63 Buchstaben und ging um die Etikettierung von Rindfleisch. Wie hieß es ungefähr?", "answer": "'Rindfleischetikettierungsüberwachungsaufgabenübertragungsgesetz'. Das wurde 2013 abgeschafft" }
           ]
         },
         {
           "name": "Voll lecker",
           "questions": [
-            { "points": 100, "question": "Welches Lebensmittel verdirbt praktisch nie und wurde sogar noch essbar in tausende Jahre alten Pharaonengräbern gefunden?", "answer": "Honig" },
-            { "points": 200, "question": "Ist eine Tomate botanisch gesehen Obst oder Gemüse?", "answer": "Botanisch ist sie eine Frucht bzw. Beere (also 'Obst'); in der Küche gilt sie als Gemüse" },
-            { "points": 300, "question": "Welche berüchtigte Frucht ist das – bekannt für ihren extrem strengen Geruch?", "answer": "Die Durian (Stinkfrucht). In vielen Hotels und U-Bahnen Asiens ist sie sogar verboten", "image": "bild_b1_frucht.png" },
-            { "points": 400, "question": "Welche 'Nuss' ist botanisch gar keine Nuss, sondern eine Hülsenfrucht – also mit Erbsen und Bohnen verwandt?", "answer": "Die Erdnuss" },
-            { "points": 500, "question": "Warum 'brennt' scharfes Essen im Mund, obwohl gar nichts wirklich verbrannt wird?", "answer": "Der Stoff Capsaicin reizt genau die Rezeptoren, die sonst echte Hitze melden (TRPV1). Das Gehirn meldet 'heiß' – ganz ohne echte Temperatur oder Schaden" }
+            { "points": 100, "question": "Welches Lebensmittel wird quasi nie schlecht und wurde sogar noch essbar in tausende Jahre alten Pharaonengräbern gefunden?", "answer": "Honig" },
+            { "points": 200, "question": "Ist eine Tomate botanisch gesehen Obst oder Gemüse?", "answer": "Botanisch ist sie eine Frucht beziehungsweise Beere, also Obst. In der Küche behandelt man sie aber als Gemüse" },
+            { "points": 300, "question": "Welche berüchtigte Frucht ist das?", "answer": "Die Durian, auch Stinkfrucht genannt. In vielen Hotels und U-Bahnen in Asien ist sie sogar verboten", "image": "bild_b1_frucht.png" },
+            { "points": 400, "question": "Welche Nuss ist botanisch eigentlich gar keine, sondern eine Hülsenfrucht und damit mit Erbsen und Bohnen verwandt?", "answer": "Die Erdnuss" },
+            { "points": 500, "question": "Warum brennt scharfes Essen im Mund, obwohl da ja gar nichts wirklich verbrennt?", "answer": "Der Stoff Capsaicin reizt genau die Rezeptoren, die sonst echte Hitze melden, die sogenannten TRPV1. Das Gehirn meldet heiß, dabei ist da gar keine echte Temperatur und auch kein Schaden" }
           ]
         }
       ]
@@ -78,61 +78,61 @@
         {
           "name": "Glaubste nicht!",
           "questions": [
-            { "points": 200, "question": "WAHR oder FALSCH: Bananen sind leicht radioaktiv.", "answer": "WAHR – sie enthalten Kalium-40, ein natürliches radioaktives Isotop. Völlig harmlos; es gibt sogar die Maßeinheit 'Bananen-Äquivalent'" },
-            { "points": 400, "question": "WAHR oder FALSCH: Ein Goldfisch hat nur ein 3-Sekunden-Gedächtnis.", "answer": "FALSCH – Goldfische merken sich Dinge über Wochen bis Monate und lassen sich sogar trainieren" },
-            { "points": 600, "question": "WAHR oder FALSCH: Der Eiffelturm ist im Sommer höher als im Winter.", "answer": "WAHR – durch die Wärmeausdehnung des Eisens wächst er um bis zu ca. 15 cm" },
-            { "points": 800, "question": "WAHR oder FALSCH: Kängurus können nicht rückwärts hüpfen.", "answer": "WAHR – wegen ihrer großen Hinterbeine und des Schwanzes kommen sie nicht rückwärts. Auch deshalb stehen sie für 'Fortschritt' auf dem Wappen Australiens" },
-            { "points": 1000, "question": "WAHR oder FALSCH: Es gibt mehr mögliche Schachpartien als Atome im beobachtbaren Universum.", "answer": "WAHR – die Zahl möglicher Partien (~10^120, die 'Shannon-Zahl') übersteigt die geschätzte Atomzahl (~10^80) bei Weitem" }
+            { "points": 200, "question": "WAHR oder FALSCH: Bananen sind leicht radioaktiv.", "answer": "WAHR. Sie enthalten Kalium-40, ein natürliches radioaktives Isotop. Völlig harmlos, dafür gibt es sogar die Maßeinheit Bananen-Äquivalent" },
+            { "points": 400, "question": "WAHR oder FALSCH: Ein Goldfisch hat nur ein 3-Sekunden-Gedächtnis.", "answer": "FALSCH. Goldfische merken sich Sachen über Wochen bis Monate und man kann sie sogar trainieren" },
+            { "points": 600, "question": "WAHR oder FALSCH: Der Eiffelturm ist im Sommer höher als im Winter.", "answer": "WAHR. Durch die Wärme dehnt sich das Eisen aus und er wächst um bis zu 15 Zentimeter" },
+            { "points": 800, "question": "WAHR oder FALSCH: Kängurus können nicht rückwärts hüpfen.", "answer": "WAHR. Wegen ihrer großen Hinterbeine und dem Schwanz kommen sie nicht rückwärts. Auch deshalb stehen sie auf dem Wappen Australiens für Fortschritt" },
+            { "points": 1000, "question": "WAHR oder FALSCH: Es gibt mehr mögliche Schachpartien als Atome im sichtbaren Universum.", "answer": "WAHR. Die Zahl der möglichen Partien, ungefähr 10 hoch 120, die sogenannte Shannon-Zahl, ist viel größer als die geschätzte Zahl der Atome mit etwa 10 hoch 80" }
           ]
         },
         {
           "name": "Stars & Sternchen",
           "questions": [
             { "points": 200, "question": "Welcher Schauspieler spielt Captain Jack Sparrow in 'Fluch der Karibik'?", "answer": "Johnny Depp" },
-            { "points": 400, "question": "Welcher Weltstar heißt mit bürgerlichem Namen Stefani Joanne Angelina Germanotta?", "answer": "Lady Gaga" },
-            { "points": 600, "question": "Welcher Hollywood-Star lehnte die Hauptrolle des 'Neo' in Matrix ab und drehte stattdessen 'Wild Wild West'?", "answer": "Will Smith" },
-            { "points": 800, "question": "Tom Hanks verzichtete bei 'Forrest Gump' auf seine feste Gage. Wofür entschied er sich stattdessen – und warum war das genial?", "answer": "Für eine prozentuale Gewinnbeteiligung am Film. Weil der Film ein Riesenerfolg wurde, verdiente er dadurch rund 40 Millionen Dollar" },
-            { "points": 1000, "question": "Welcher Blues-Legende wird nachgesagt, sie habe um Mitternacht an einer Wegkreuzung ihre Seele dem Teufel für ihr Gitarrentalent verkauft?", "answer": "Robert Johnson – der berühmte 'Crossroads'-Mythos" }
+            { "points": 400, "question": "Welcher Weltstar heißt mit echtem Namen Stefani Joanne Angelina Germanotta?", "answer": "Lady Gaga" },
+            { "points": 600, "question": "Welcher Hollywood-Star hat die Hauptrolle als Neo in Matrix abgelehnt und stattdessen 'Wild Wild West' gedreht?", "answer": "Will Smith" },
+            { "points": 800, "question": "Tom Hanks hat bei 'Forrest Gump' auf seine feste Gage verzichtet. Wofür hat er sich stattdessen entschieden, und warum war das genial?", "answer": "Für eine Beteiligung am Gewinn des Films. Weil der Film so durch die Decke ging, hat er damit am Ende rund 40 Millionen Dollar verdient" },
+            { "points": 1000, "question": "Welcher Blues-Legende sagt man nach, sie habe um Mitternacht an einer Wegkreuzung ihre Seele dem Teufel verkauft, um so gut Gitarre spielen zu können?", "answer": "Robert Johnson, der berühmte Crossroads-Mythos" }
           ]
         },
         {
           "name": "Erfindungsreich",
           "questions": [
-            { "points": 200, "question": "Welches Alltagsprodukt erfand ein Ingenieur, nachdem er Kletten aus dem Fell seines Hundes gepult und unters Mikroskop gelegt hatte?", "answer": "Den Klettverschluss (Velcro), von George de Mestral" },
-            { "points": 400, "question": "Die Mikrowelle wurde durch Zufall entdeckt – was schmolz dem Erfinder neben einem laufenden Radargerät in der Hosentasche?", "answer": "Ein Schokoriegel. Percy Spencer bemerkte daraufhin die Hitzewirkung des Magnetrons" },
-            { "points": 600, "question": "Welches weltberühmte Erfrischungsgetränk wurde ursprünglich von einem Apotheker als Medizin – u.a. gegen Kopfschmerzen und Müdigkeit – gebraut?", "answer": "Coca-Cola, von John Pemberton" },
-            { "points": 800, "question": "Welches beliebte Kinder-Spielzeug war ursprünglich als Reinigungsmittel für Tapeten erfunden worden?", "answer": "Knete (Play-Doh)" },
-            { "points": 1000, "question": "Der erste künstliche Süßstoff (Saccharin) wurde entdeckt, weil ein Forscher etwas Wichtiges vergaß. Was?", "answer": "Sich vor dem Essen die Hände zu waschen – er schmeckte die süße Chemikalie an seinen Fingern (Constantin Fahlberg, 1879)" }
+            { "points": 200, "question": "Welches Alltagsprodukt hat ein Ingenieur erfunden, nachdem er Kletten aus dem Fell seines Hundes holte und unters Mikroskop legte?", "answer": "Den Klettverschluss, auf Englisch Velcro, von George de Mestral" },
+            { "points": 400, "question": "Die Mikrowelle wurde durch Zufall entdeckt. Was ist dem Erfinder neben einem laufenden Radargerät in der Hosentasche geschmolzen?", "answer": "Ein Schokoriegel. Percy Spencer ist dadurch aufgefallen, dass das Magnetron Hitze erzeugt" },
+            { "points": 600, "question": "Welches weltbekannte Erfrischungsgetränk hat ein Apotheker ursprünglich als Medizin gebraut, unter anderem gegen Kopfschmerzen und Müdigkeit?", "answer": "Coca-Cola, von John Pemberton" },
+            { "points": 800, "question": "Welches beliebte Kinderspielzeug war ursprünglich mal als Reinigungsmittel für Tapeten gedacht?", "answer": "Knete, also Play-Doh" },
+            { "points": 1000, "question": "Der erste künstliche Süßstoff, das Saccharin, wurde entdeckt, weil ein Forscher etwas Wichtiges vergessen hat. Was?", "answer": "Sich vor dem Essen die Hände zu waschen. So hat er die süße Chemikalie an seinen Fingern geschmeckt. Das war Constantin Fahlberg im Jahr 1879" }
           ]
         },
         {
           "name": "Damals so",
           "questions": [
-            { "points": 200, "question": "Von welchem Land kauften die USA im Jahr 1867 Alaska?", "answer": "Von Russland – für 7,2 Millionen Dollar" },
-            { "points": 400, "question": "Welches Tier wurde im alten Ägypten so verehrt, dass das Töten eines solchen sogar mit dem Tod bestraft werden konnte?", "answer": "Die Katze" },
-            { "points": 600, "question": "Welches berühmte Bauwerk ist das – und in welcher Stadt steht es?", "answer": "Die Sagrada Família in Barcelona (seit 1882 im Bau und bis heute nicht ganz fertig)", "image": "bild_b2_bauwerk.png" },
-            { "points": 800, "question": "Wie lange dauerte der kürzeste Krieg der Geschichte (Großbritannien gegen Sansibar, 1896)?", "answer": "Etwa 38 Minuten" },
-            { "points": 1000, "question": "Der persische Großkönig Xerxes ließ angeblich etwas Ungewöhnliches 'bestrafen' und auspeitschen, nachdem ein Sturm seine Brücke zerstört hatte. Was?", "answer": "Das Meer – genauer die Meerenge Hellespont. Er ließ ihr 300 Peitschenhiebe verpassen (480 v. Chr.)" }
+            { "points": 200, "question": "Von welchem Land haben die USA 1867 Alaska abgekauft?", "answer": "Von Russland, für 7,2 Millionen Dollar" },
+            { "points": 400, "question": "Welches Tier wurde im alten Ägypten so verehrt, dass man fürs Töten sogar mit dem Tod bestraft werden konnte?", "answer": "Die Katze" },
+            { "points": 600, "question": "Welches berühmte Bauwerk ist das, und in welcher Stadt steht es?", "answer": "Die Sagrada Família in Barcelona. Daran wird seit 1882 gebaut und ganz fertig ist sie bis heute nicht", "image": "bild_b2_bauwerk.png" },
+            { "points": 800, "question": "Wie lange hielt der kürzeste Krieg 1896?", "answer": "Ungefähr 38 Minuten" },
+            { "points": 1000, "question": "Der persische Großkönig Xerxes hat angeblich etwas ziemlich Ungewöhnliches bestrafen und auspeitschen lassen, nachdem ein Sturm seine Brücke zerstört hatte. Was?", "answer": "Das Meer, genauer die Meerenge Hellespont. Er hat ihr 300 Peitschenhiebe verpassen lassen, und zwar 480 vor Christus" }
           ]
         },
         {
           "name": "Pixel & Pop",
           "questions": [
             { "points": 200, "question": "Wie heißt der italienische Klempner, der das Maskottchen von Nintendo ist?", "answer": "Mario" },
-            { "points": 400, "question": "Welches ist das meistverkaufte Videospiel aller Zeiten mit über 300 Millionen verkauften Exemplaren?", "answer": "Minecraft" },
-            { "points": 600, "question": "Wie heißt diese Videospielfigur?", "answer": "Crash Bandicoot – ein oranges Beuteltier, einst das inoffizielle Maskottchen der PlayStation", "image": "bild_b2_game.png" },
-            { "points": 800, "question": "Welches Spiel machte den Modus 'Battle Royale' groß, bevor Fortnite ihn übernahm?", "answer": "PUBG (PlayerUnknown's Battlegrounds)" },
-            { "points": 1000, "question": "Welches gefloppte Atari-Spiel von 1982 gilt als Mitauslöser des großen Video-Game-Crashs – und wurde in solchen Massen produziert, dass übrige Module heimlich in einer Wüste in New Mexico vergraben wurden?", "answer": "E.T. the Extra-Terrestrial. 2014 wurden die vergrabenen Module in Alamogordo tatsächlich wieder ausgegraben" }
+            { "points": 400, "question": "Welches ist mit über 300 Millionen verkauften Exemplaren das meistverkaufte Videospiel aller Zeiten?", "answer": "Minecraft" },
+            { "points": 600, "question": "Wie heißt diese Videospielfigur?", "answer": "Crash Bandicoot, ein oranges Beuteltier und früher mal das inoffizielle Maskottchen der PlayStation", "image": "bild_b2_game.png" },
+            { "points": 800, "question": "Welches Spiel hat den Battle-Royale-Modus groß gemacht, bevor Fortnite ihn übernommen hat?", "answer": "PUBG, also PlayerUnknown's Battlegrounds" },
+            { "points": 1000, "question": "Welches gefloppte Atari-Spiel von 1982 gilt als einer der Auslöser des großen Video-Game-Crashs und wurde in solchen Massen produziert, dass die übrigen Module heimlich in einer Wüste in New Mexico vergraben wurden?", "answer": "E.T. the Extra-Terrestrial. 2014 hat man die vergrabenen Module in Alamogordo tatsächlich wieder ausgegraben" }
           ]
         },
         {
           "name": "Hirnverdreher",
           "questions": [
-            { "points": 200, "question": "Was ist schwerer – ein Kilogramm Federn oder ein Kilogramm Stahl?", "answer": "Beide sind gleich schwer (je genau 1 Kilogramm)" },
-            { "points": 400, "question": "Ein Bauer muss einen Wolf, eine Ziege und einen Kohlkopf über einen Fluss bringen. Ins Boot passt außer ihm nur eines. Allein gelassen frisst der Wolf die Ziege und die Ziege den Kohl. Wie schafft er es?", "answer": "Ziege rüber – allein zurück – Wolf rüber – Ziege wieder zurückholen – Kohl rüber – allein zurück – zuletzt die Ziege rüber" },
-            { "points": 600, "question": "'Vorgestern war ich 17, aber nächstes Jahr werde ich 20.' Wie kann dieser Satz wahr sein?", "answer": "Der Satz wird am 1. Januar gesagt, der Geburtstag ist am 31. Dezember: Vorgestern (30.12.) war die Person 17, gestern (31.12.) wurde sie 18, dieses Jahr wird sie 19 und nächstes Jahr 20" },
-            { "points": 800, "question": "Du hast 12 gleich aussehende Münzen, eine davon ist gefälscht und hat ein anderes Gewicht – ob leichter oder schwerer, ist unbekannt. Wie oft musst du mit einer Balkenwaage mindestens wiegen, um sie sicher zu finden?", "answer": "Mit nur 3 Wägungen" },
-            { "points": 1000, "question": "Beim 'Schiff des Theseus' werden über die Jahre alle Planken Stück für Stück ersetzt. Ist es danach noch dasselbe Schiff – und was ist die Pointe dieses Gedankenexperiments?", "answer": "Es ist ein Identitäts-Paradoxon ohne eindeutige Lösung: Liegt Identität im Material oder in der durchgehenden Form? Zuspitzung: Baut man aus allen alten Planken ein zweites Schiff – welches ist dann das 'echte'?" }
+            { "points": 200, "question": "Was ist schwerer, ein Kilo Federn oder ein Kilo Stahl?", "answer": "Beide sind gleich schwer, nämlich genau ein Kilo" },
+            { "points": 400, "question": "Ein Bauer muss einen Wolf, eine Ziege und einen Kohlkopf über einen Fluss bringen. Ins Boot passt außer ihm nur eins davon. Allein gelassen frisst der Wolf die Ziege und die Ziege den Kohl. Wie schafft er es?", "answer": "Erst die Ziege rüber, allein zurück, dann den Wolf rüber, die Ziege wieder mit zurück, den Kohl rüber, allein zurück und zum Schluss die Ziege rüber" },
+            { "points": 600, "question": "'Vorgestern war ich 17, aber nächstes Jahr werde ich 20.' Wie kann der Satz stimmen?", "answer": "Der Satz wird am 1. Januar gesagt und der Geburtstag ist am 31. Dezember. Vorgestern, am 30.12., war die Person 17, gestern, am 31.12., wurde sie 18, dieses Jahr wird sie 19 und nächstes Jahr 20" },
+            { "points": 800, "question": "Du hast 12 gleich aussehende Münzen, eine davon ist gefälscht und wiegt anders, aber du weißt nicht, ob leichter oder schwerer. Wie oft musst du mit einer Balkenwaage mindestens wiegen, um sie sicher zu finden?", "answer": "Mit nur 3 Wägungen" },
+            { "points": 1000, "question": "Beim Schiff des Theseus werden über die Jahre nach und nach alle Planken ausgetauscht. Ist es danach noch dasselbe Schiff, und was ist der Clou an dem Gedankenexperiment?", "answer": "Es ist ein Identitäts-Paradoxon ohne klare Lösung. Steckt die Identität im Material oder in der durchgehenden Form? Und jetzt wird es spannend: Baut man aus all den alten Planken ein zweites Schiff, welches ist dann das echte?" }
           ]
         }
       ]
